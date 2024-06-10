@@ -23,13 +23,13 @@ const create = async(req,res)=>{
 }
 
 const update = async(req,res)=>{
-    const id =req.params.id;
+    const id = eq.params.id;
     const propiedad = await propiedadController.update(id,req.body);
     res.json({data:propiedad})
 }
 
 const remove = async(req,res)=>{
-    const id= req.params.id;
+    const id = req.params.id;
     const propiedad = await propiedadController.remove(id);
     res.json({data:propiedad})
 }
