@@ -3,8 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import { getPropiedad } from "./api.js"
+
 function App() {
   const [count, setCount] = useState(0)
+
+  mostrarPropiedades()
+  async function mostrarPropiedades() {
+    const mostrar = await getPropiedad()
+    console.log(mostrar)
+  }
+
 
   return (
     <>
