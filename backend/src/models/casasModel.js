@@ -27,6 +27,11 @@ const userSchema  = new mongoose.Schema({
         required: true
     },
 
+    altura : {
+        type: Number,
+        required: true
+    },
+
     precio : {
         type: Number,
         required: true
