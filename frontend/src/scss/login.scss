@@ -1,0 +1,44 @@
+#login-header {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+
+    & > #login-center {
+        width: 80%;
+        text-align: center;
+    }
+
+    & h1 {
+        text-align: center;
+    }
+}
+
+#login-html {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin-top: 50px;
+
+    & #login-inicio, #login-nuevo {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 60, 255, 0.411);
+        border-radius: 25px;
+        padding: 15px 25px;
+    }
+
+    & h2 {
+        text-align: center;
+    }
+
+    & input {
+        border-radius: 15px;
+        padding: 3px 15px;
+        margin: 6px 0;
+        font-size: 1.2rem;
+    }
+
+    & #login-submit {
+        margin-top: 20px;
+    }
+}

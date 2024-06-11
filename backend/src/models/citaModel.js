@@ -24,7 +24,6 @@ const userSchema  = new mongoose.Schema({
 
     place : {
         type: String,
-        required: true
     },
 })
 
