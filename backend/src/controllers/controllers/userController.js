@@ -69,8 +69,6 @@ async function login(username,password){
 
 const create = async(data) =>{
     try {
-        const hash = await bcrypt.hash(data.password,10);
-        data.password = hash;
         const user = await userModel.create(data);
         return user;
     } catch (error) {
@@ -94,10 +92,9 @@ const register = async(username,password,passwordRepeat) => {
         if(oldUser){
             return {error:"El usuario ya existe"};
         }
-        const hash = await bcrypt.hash(password,10);
         const userData = {
             username,
-            password:hash
+            password
         }
         const newUser = await create(userData);
         return {data:newUser};

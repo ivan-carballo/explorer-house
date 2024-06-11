@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { sha256 } from "./functions/sha256"
+import { useNavigate, redirect } from "react-router-dom";
+import { sha256 } from 'js-sha256';
 import { userLogin, userCreate } from './api/apiUser';
 
 import './scss/login.scss'
@@ -7,6 +8,7 @@ import './scss/login.scss'
 
 const Root = () => {
     const [aviso, setAviso] = useState('')
+    const navigate = useNavigate();
 
 
 
@@ -18,9 +20,11 @@ const Root = () => {
         let userList = await userLogin()
         userList = await userList.data
 
+
         for (let i = 0; userList.length > i; i++) {
-            if(userList[i].username == username /* && userList[i].password == password */) {
-                setAviso('lkjalkjksad')
+            if(userList[i].username == username && userList[i].password == password) {
+                setAviso('')
+                navigate("/index");
             } else {
                 setAviso('Su usuario o contraseña no coinciden')
             }
