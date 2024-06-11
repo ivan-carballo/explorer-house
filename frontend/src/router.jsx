@@ -10,10 +10,15 @@ import { Index } from "./pages/index.jsx";
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root />,
+      //element: <Root />,
       children: [
         {
-            path: "/",
+          path: "/",
+          element: <Root />
+        },
+
+        {
+            path: "/index",
             element: <Index />
         },
 

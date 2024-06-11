@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { getPropiedad } from "../api.js"
+import { getPropiedad } from "../api/apiPropiedad.js"
+
+import { Navbar } from "../componentes/navbar.jsx";
 
 import "../scss/index.scss"
 
@@ -14,7 +16,9 @@ function Index() {
         Propiedades()
         async function Propiedades() {
             const getAll = await getPropiedad()
-            const getArray = await getAll.data
+            let getArray = await getAll.data
+            getArray.sort()
+
 
             const propiedadesDiv = await getArray.map((data) => 
                 <div id='div-pisos' key={data._id}>
@@ -35,9 +39,12 @@ function Index() {
 
 
     return (
-        <div>
-            {listado}
-        </div>
+        <>
+            <Navbar />
+            <div id='div-body'>
+                {listado}
+            </div>
+        </>
     )
 }
 
