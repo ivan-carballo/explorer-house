@@ -36,6 +36,20 @@ const userSchema  = new mongoose.Schema({
         type: Number,
         required: true
     },
+
+    owner : {
+        type: mongoose.Schema.ObjectId,
+        required: true,
+        ref: "user"
+    },
+
+    citas: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "cita"
+        }
+    ]
+
 })
 
 
