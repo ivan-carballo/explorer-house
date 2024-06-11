@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPropiedad } from "../api.js"
+import { getPropiedad } from "../api/apiPropiedad.js"
 
 import { Navbar } from "../componentes/navbar.jsx";
 

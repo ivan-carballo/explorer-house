@@ -6,10 +6,18 @@
     & > #login-center {
         width: 80%;
         text-align: center;
-    }
 
-    & h1 {
-        text-align: center;
+        & h1 {
+            text-align: center;
+        }
+    
+        & > #aviso {
+            color: rgba(255, 0, 0, 0.781);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
     }
 }
 
