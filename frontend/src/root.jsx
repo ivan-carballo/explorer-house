@@ -9,21 +9,31 @@ const Root = () => {
     const [aviso, setAviso] = useState('')
 
 
+
     async function login(e) {
         setAviso('')
-        const username = await e.target.form[0].value
-        const password = await sha256(e.target.form[1].value)
+        const username = e.target.form[0].value
+        const password = sha256(e.target.form[1].value)
 
-        console.log(`usuario: ${username} y esto es contraseña: ${password}`)
+        let userList = await userLogin()
+        userList = await userList.data
 
+        for (let i = 0; userList.length > i; i++) {
+            if(userList[i].username == username /* && userList[i].password == password */) {
+                setAviso('lkjalkjksad')
+            } else {
+                setAviso('Su usuario o contraseña no coinciden')
+            }
+        }
     }
+
 
 
     async function create(e) {
         setAviso('')
-        const username = await e.target.form[0].value
-        const password = await sha256(e.target.form[1].value)
-        const repeatPassword = await sha256(e.target.form[2].value)
+        const username = e.target.form[0].value
+        const password = sha256(e.target.form[1].value)
+        const repeatPassword = sha256(e.target.form[2].value)
 
         let userList = await userLogin()
         userList = await userList.data
@@ -34,7 +44,6 @@ const Root = () => {
                 userUser = true;
             }
         }
-
 
         if (username.length < 1 || password.lenght < 1 || repeatPassword < 1) {
             setAviso('Debe rellenar todos los campos para poder crear un nuevo usuario')
@@ -55,8 +64,9 @@ const Root = () => {
 
             const userCrear = await userCreate(data)
         }
-
     }
+
+
 
 
 
