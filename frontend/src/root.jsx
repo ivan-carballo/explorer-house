@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { sha256 } from 'js-sha256';
+import Cookies from 'js-cookie';
+
 import { userLogin, userCreate } from './api/apiUser';
 
 
@@ -10,6 +12,24 @@ import './scss/login.scss'
 const Root = () => {
     const [aviso, setAviso] = useState('')
     const navigate = useNavigate();
+
+
+    activeLogin()
+    async function activeLogin() {
+        const usernameC = await Cookies.get('username')
+        const passC = await Cookies.get('credential')
+
+        let userList = await userLogin()
+        userList = await userList.data
+        
+
+        for (let i = 0; userList.length > i; i++) {
+            if(sha256(userList[i].username) == usernameC && userList[i].password == passC) {
+                navigate("/index");
+            }
+        }
+    }
+
 
 
 
@@ -25,6 +45,8 @@ const Root = () => {
         for (let i = 0; userList.length > i; i++) {
             if(userList[i].username == username_ && userList[i].password == password) {
                 setAviso('')
+                Cookies.set('username', sha256(username_));
+                Cookies.set('credential', password);
                 navigate("/index");
             } else {
                 setAviso('Su usuario o contraseña no coinciden')
