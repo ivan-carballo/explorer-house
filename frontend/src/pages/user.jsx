@@ -20,22 +20,32 @@ function UserPanel() {
         let listCita = await getCita()
         listCita = await listCita.data
 
+        let listPropiedad = await getPropiedad()
+        listPropiedad = await listPropiedad.data
+
         const name_ = Cookies.get('username')
         let listCitaArray = []
+        let listPropiedadArray = []
 
 
         for (let i = 0; listCita.length > i; i++) {
             if (name_ == sha256(listCita[i].username)) {
                 listCitaArray.push(listCita[i])
+
+                for (let j = 0; listPropiedad.length > j; j++) {
+                    if (listCita[i].propiedad == listPropiedad[j]._id) {
+                        listPropiedadArray.push(listPropiedad[j])
+                    }
+                }
             }
         }
-
         
 
         const citasDiv = await listCitaArray.map((data) => 
             <div id='div-citas' key={data._id}>
                 <p>Fecha: {data.date}</p>
                 <p>Vendedor: {data.vendor}</p>
+                <input type="button" value="Eliminar cita" />
             </div>
         )
         setListCitas(citasDiv)

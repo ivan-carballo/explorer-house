@@ -14,11 +14,13 @@ import './scss/login.scss'
 
 const Root = () => {
     const [aviso, setAviso] = useState('')
+    const [creado, setCreado] = useState('')
     const navigate = useNavigate();
 
 
 
     async function login(e) {
+        setCreado('')
         setAviso('')
         const username_ = e.target.form[0].value
         const password = sha256(e.target.form[1].value)
@@ -65,6 +67,9 @@ const Root = () => {
         } else if (password != repeatPassword) {
             setAviso('Las contraseñas elegidas no coinciden entre ellas')
         } else {
+            setAviso('')
+            setCreado('Su usuario se ha creado correctamente')
+
             const userArrayNew = {'username':username, 'password':password, 'role':'user'}
 
             const data = {
@@ -92,6 +97,7 @@ const Root = () => {
                     <p>Plataforma especializada en la intermediación de operaciones de compra y venta de propiedades inmobiliarias, donde garantizamos el contacto directo con los legítimos propietarios. Además, ofrecemos la posibilidad de gestionar citas personalizadas con los propietarios para que puedan mostrar personalmente la propiedad a los interesados.</p>
                     <p>Para acceder a nuestra plataforma, le invitamos a crear una cuenta de usuario que nos permitirá contar con sus datos y ofrecerle una atención más personalizada. Si ya dispone de una cuenta, simplemente inicie sesión para explorar nuestra extensa selección de propiedades inmobiliarias disponibles.</p>
                     <p id='aviso'>{aviso}</p>
+                    <p id='creado'>{creado}</p>
                 </div>
             </div>
 
