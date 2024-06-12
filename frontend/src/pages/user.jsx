@@ -45,10 +45,15 @@ function UserPanel() {
             <div id='div-citas' key={data._id}>
                 <p>Fecha: {data.date}</p>
                 <p>Vendedor: {data.vendor}</p>
-                <input type="button" value="Eliminar cita" />
+                <input type="button" value="Eliminar cita" onClick={citaDelete} />
             </div>
         )
         setListCitas(citasDiv)
+    }
+
+
+    async function citaDelete(e) {
+        //Aqui para eliminar la cita
     }
 
 
