@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Cabecera.css';
 import { FaShoppingCart, FaHome, FaUser, FaUserPlus, FaBuilding, FaMapMarkerAlt, FaWarehouse, FaAddressBook, FaCoins, FaUserMinus } from 'react-icons/fa';
 
+
+
 const Cabecera = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -22,6 +24,7 @@ const Cabecera = () => {
   };
 
   return (
+    <>
     <header className="cabecera">
       <ul className="cabecera__nav">
         <li className="cabecera__left">
@@ -54,8 +57,16 @@ const Cabecera = () => {
           <img src="src/components/cabecera/usuario.png" alt="Usuario" className="usuario" />
           </button>
         </li>
+        <li>
+        <img src="src/components/cabecera/explorerhouselogo.jpg" alt="Logo" className="cabecera_icon" />
+        </li>
       </ul>
+      
     </header>
+    <img src="src/components/cabecera/linea.jpg" alt="" className="linea"/>
+    <br></br>
+    <br></br>
+    </>
   );
 }
 
