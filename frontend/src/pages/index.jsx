@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getPropiedad } from "../api/apiPropiedad.js"
 
 import { Navbar } from "../componentes/navbar.jsx";
+import Cookies from 'js-cookie';
+import { activeLogin } from "../funciones/activeLogin.js"
 
 import "../scss/index.scss"
 
@@ -10,6 +12,9 @@ import "../scss/index.scss"
 
 function Index() {
     const [listado, setListado] = useState('')
+
+    
+    activeLogin()
 
 
     useEffect(() => {
