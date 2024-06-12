@@ -19,17 +19,19 @@ const router = createBrowserRouter([
         },
 
         {
-            path: "/index",
-            element: <Index />
+          path: "/index",
+          element: <Index />
         },
+
         {
           //path: "/houses",
           //element: <HousesList />,
           //loader: () => fetchHouses()
-      },
+        },
+
         {
           //path: "/houses/:id",
-         // element: <House />,
+          //element: <House />,
           //loader: ({params}) => fetchHouses(params.id)
         },
 
@@ -37,10 +39,7 @@ const router = createBrowserRouter([
           //path: "/buscador",
           //element: <Root />
         },
-        {
-          //path: "/cita",
-          //element: <Root />
-        },
+
         {
           //path: "/user",
           //element: <Root />

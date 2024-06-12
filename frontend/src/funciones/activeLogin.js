@@ -16,7 +16,7 @@ async function activeLogin() {
     
 
     for (let i = 0; userList.length > i; i++) {
-        if(sha256(userList[i].username) != usernameC || userList[i].password != passC) {
+        if(sha256(userList[i].username) != usernameC && userList[i].password != passC) {
             navigate("/");
         }
     }
