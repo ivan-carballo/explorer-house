@@ -1,0 +1,21 @@
+#div-links {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(255, 0, 0, 0.623);
+    margin: -10px -10px 25px -15px;
+
+    & .link {
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: black;
+
+        &:hover {
+            font-style: italic;
+        }
+    }
+
+
+}
