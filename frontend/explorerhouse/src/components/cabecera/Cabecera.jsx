@@ -13,7 +13,7 @@ const Cabecera = () => {
     window.location.href = url;
   };
 
-  const buscaporprecio = (precio) => {
+  const buscaporprecio = (rango1,rango2) => {
     // Lógica para buscar por precio
   };
 
@@ -36,10 +36,10 @@ const Cabecera = () => {
   </button>
   {dropdownOpen && (
     <ul className="dropdown__menu">
-      <li><button onClick={() => buscaporprecio('100000')}><FaCoins /> 100000</button></li>
-      <li><button onClick={() => buscaporprecio('150000')}><FaCoins /> 150000</button></li>
-      <li><button onClick={() => buscaporprecio('300000')}><FaCoins /> 300000</button></li>
-      <li><button onClick={() => buscaporprecio('500000')}><FaCoins /> 500000</button></li>
+      <li><button onClick={() => buscaporprecio(70000,150000)}><FaCoins /> 70000-150000</button></li>
+      <li><button onClick={() => buscaporprecio(150001,300000)}><FaCoins /> 150001-300000</button></li>
+      <li><button onClick={() => buscaporprecio(300001,500000)}><FaCoins /> 300001-500000</button></li>
+      <li><button onClick={() => buscaporprecio(500001,2000000)}><FaCoins /> 50001+</button></li>
     </ul>
   )}
 </li>
