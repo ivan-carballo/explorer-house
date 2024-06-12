@@ -1,13 +1,22 @@
 .cabecera {
   display: flex;
-  align-items: center;
-  padding: 1rem;
+  justify-content: left; /* Asegura que el contenido esté centrado horizontalmente */
   background-color: white;
   color: black;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  
+  padding: 0 0.1rem; /* Ajusta el padding a los lados */
+}
+
+.cabecera__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin-inline: 10px;
+  width: 100%;
 }
 
 .cabecera__left {
@@ -21,12 +30,13 @@
   gap: 1rem;
   margin: 0;
   padding: 0;
+  margin-left: 20px;
 }
 
 .cabecera__nav li {
   display: flex;
   align-items: center;
-  position: relative; /* Asegúrate de que cada <li> pueda ser un contenedor de posición relativa */
+  position: relative;
 }
 
 .dropdown__toggle {
@@ -37,14 +47,14 @@
 
 .dropdown__menu {
   position: absolute;
-  left: 0; /* Alinea a la izquierda con el botón 'Inmuebles' */
-  top: 100%; /* Mueve el menú justo debajo del botón 'Inmuebles' */
+  left: 0;
+  top: 100%;
   background-color: white;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
   list-style: none;
   margin: 0;
-  display: block; /* Muestra el menú cuando 'dropdownOpen' es true */
+  display: block;
 }
 
 .dropdown__menu li {
@@ -65,13 +75,21 @@
 }
 
 .cabecera_icon {
-  width: 130px;
-  height: 50px;
+  width: 150px;
+  height: 70px;
   margin-right: 20px;
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-top: 5PX;
 }
 
 .usuario {
   width: 40px;
   height: 40px;
+}
+
+.linea {
+  display: flex;
+  justify-content: left;
+  position:fixed;
+  top: 80px;
 }
