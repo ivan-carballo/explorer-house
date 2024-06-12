@@ -1,3 +1,9 @@
+async function getCita() {
+  let cita = await fetch(`http://localhost:3015/cita`);
+  cita = await cita.json();
+  return (cita)
+}
+
 
 
 async function citaCreate(data) {
@@ -18,5 +24,6 @@ async function citaCreate(data) {
 
 
   export {
+    getCita,
     citaCreate
   }

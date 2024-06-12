@@ -50,3 +50,13 @@
         margin-top: 20px;
     }
 }
+
+@media (max-width: 750px) {
+    #login-html {
+        grid-template-columns: 1fr;
+    }
+
+    #login-cuadro-inicio {
+        margin-bottom: 20px;
+    }
+}

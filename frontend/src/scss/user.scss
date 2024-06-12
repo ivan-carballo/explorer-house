@@ -1,0 +1,24 @@
+#datos {
+    text-align: center;
+}
+
+#citas {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    & > #div-citas {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(22, 115, 238, 0.753);
+        border-radius: 15px;
+        padding: 15px 25px;
+        margin: 5px 15px;
+        width: max-content;
+        justify-self: center;
+
+        & p {
+            margin: 2px 0;
+        }
+    }
+}

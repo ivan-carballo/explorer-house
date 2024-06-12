@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Root } from './root.jsx'
 
 import { Index } from "./pages/index.jsx";
+import { UserPanel } from "./pages/user.jsx";
 import HousesList from "./componentes/houses/houseList.jsx";
 
 
@@ -41,8 +42,8 @@ const router = createBrowserRouter([
         },
 
         {
-          //path: "/user",
-          //element: <Root />
+          path: "/user",
+          element: <UserPanel />
         },
 
       ]
