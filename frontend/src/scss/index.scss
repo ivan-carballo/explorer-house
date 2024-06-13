@@ -4,14 +4,51 @@
     justify-items: center;
 
     & #div-pisos {
-    background-color: rgba(22, 115, 238, 0.753);
-    border-radius: 15px;
-    width: max-content;
-    margin: 10px;
-    padding: 15px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(22, 115, 238, 0.582);
+        border-radius: 10px;
+        width: max-content;
+        margin: 10px;
+        padding: 20px;
+
+        & > #img-pisos{
+            width: 30rem;
+            margin: 20px 0;
+            border-radius: 25px;
+            align-self: center;
+        }
+
+        & > .button-pisos {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            font-style: oblique;
+            font-weight: 700;
+            border-radius: 15px;
+            margin-top: 10px;
+            width: max-content;
+            padding: 4px 25px;
+            align-self: center;
+            background-color: rgb(188, 222, 250);
+            border: 0;
+            cursor: pointer;
+        }
+
+        & > #descripcion {
+            text-align: center;
+            font-weight: 600;
+        }
+
     }
 
     & p {
-        margin: 0;
+        margin: 2px 0;
     }
+
+    & h1 {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    
 }

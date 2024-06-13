@@ -37,18 +37,15 @@ const userSchema  = new mongoose.Schema({
         required: true
     },
 
-    owner : {
-        type: mongoose.Schema.ObjectId,
+    vendor : {
+        type: String,
         required: true,
-        ref: "user"
     },
 
-    citas: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: "cita"
-        }
-    ]
+    imagen: {
+        type: String,
+    }
+
 
 })
 
