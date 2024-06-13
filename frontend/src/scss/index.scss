@@ -6,15 +6,15 @@
     & #div-pisos {
         display: flex;
         flex-direction: column;
-        background-color: rgba(22, 115, 238, 0.753);
-        border-radius: 15px;
+        background-color: rgba(22, 115, 238, 0.582);
+        border-radius: 10px;
         width: max-content;
         margin: 10px;
         padding: 20px;
 
         & > #img-pisos{
             width: 30rem;
-            margin-bottom: 15px;
+            margin: 20px 0;
             border-radius: 25px;
             align-self: center;
         }
@@ -29,6 +29,14 @@
             width: max-content;
             padding: 4px 25px;
             align-self: center;
+            background-color: rgb(188, 222, 250);
+            border: 0;
+            cursor: pointer;
+        }
+
+        & > #descripcion {
+            text-align: center;
+            font-weight: 600;
         }
 
     }
@@ -36,4 +44,11 @@
     & p {
         margin: 2px 0;
     }
+
+    & h1 {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    
 }

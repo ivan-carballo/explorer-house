@@ -14,6 +14,7 @@ import "../scss/index.scss"
 
 function Index() {
     const [listado, setListado] = useState('')
+    const [buttonCita, setButtonCita] = useState('Pedir cita')
 
     
     activeLogin()
@@ -30,16 +31,17 @@ function Index() {
 
             const propiedadesDiv = await getArray.map((data) => 
                 <div id='div-pisos' key={data._id}>
+                    <h1>{data.tipo} en {data.ciudad}</h1>
+                    <p id='descripcion'>{data.descripcion}</p>
                     <img id='img-pisos' src={data.imagen} />
-                    <p>Tipo: {data.tipo}</p>
-                    <p>Ciudad: {data.ciudad}</p>
-                    <p>Descripcion: {data.descripcion}</p>
-                    <p>Habitaciones: {data.habitacion}</p>
-                    <p>Metros: {data.metros}</p>
-                    <p>Altura: {data.altura}</p>
-                    <p>Precio: {data.precio}</p>
-                    <p>Vendedor: {data.vendor}</p>
-                    <input id={data._id} className="button-pisos" type="button" value="Pedir cita" onClick={newCita} />
+                    <ul>
+                        <li>Habitaciones: {data.habitacion}</li>
+                        <li>Metros: {data.metros}</li>
+                        <li>Altura: {data.altura}</li>
+                        <li>Precio: {data.precio}</li>
+                        <li>Vendedor: {data.vendor}</li>
+                    </ul>
+                    <input id={data._id} className="button-pisos" type="button" value={buttonCita} onClick={newCita} />
                 </div>
             )
             setListado(propiedadesDiv)

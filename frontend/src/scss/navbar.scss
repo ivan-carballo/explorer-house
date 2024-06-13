@@ -1,12 +1,18 @@
 #div-links {
-    padding: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content: space-around;
-    background-color: rgba(255, 0, 0, 0.623);
     margin: -10px -10px 25px -15px;
+    border-bottom: 2px solid blue;
+
+    & > #logo-navbar {
+        width: 12rem;
+    }
 
     & .link {
         text-decoration: none;
+        align-self: center;
+        align-items: center;
         margin: 0 10px;
         font-size: 1.5rem;
         font-weight: 700;
@@ -16,6 +22,4 @@
             font-style: italic;
         }
     }
-
-
 }
