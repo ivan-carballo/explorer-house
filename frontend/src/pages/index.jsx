@@ -34,7 +34,7 @@ function Index() {
                     <h1>{data.tipo} en {data.ciudad}</h1>
                     <p id='descripcion'>{data.descripcion}</p>
                     <img id='img-pisos' src={data.imagen} />
-                    <ul>
+                    <ul className="detalles-piso">
                         <li>Habitaciones: {data.habitacion}</li>
                         <li>Metros: {data.metros}</li>
                         <li>Altura: {data.altura}</li>
@@ -86,9 +86,12 @@ function Index() {
     return (
         <>
             <Navbar />
+            <h2 id="titulo-pagina">Pisos Disponibles:</h2>
             <div id='div-body'>
                 {listado}
             </div>
+            <div id="circulo-decoracion"></div>
+            <div id="circulo-decoracion2"></div>
         </>
     )
 }
