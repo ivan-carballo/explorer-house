@@ -3,6 +3,7 @@ import { Root } from './root.jsx'
 
 import { Index } from "./pages/index.jsx";
 import { UserPanel } from "./pages/user.jsx";
+import { NewPropiedad } from "./pages/newPropiedad.jsx";
 import HousesList from "./componentes/houses/houseList.jsx";
 
 
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
           path: "/user",
           element: <UserPanel />
         },
+
+        {
+          path: "/new",
+          element: <NewPropiedad />
+        }
 
       ]
     }    

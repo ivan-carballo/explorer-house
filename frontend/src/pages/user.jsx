@@ -41,6 +41,7 @@ function UserPanel() {
                         }
                     }
                 }
+
                 
                 const citasDiv = await listCitaArray.map((data) => 
                     <div id='div-citas' key={data._id}>
@@ -62,7 +63,6 @@ function UserPanel() {
         const propiedadID = e.target.id
         const citaCrear = await citaDelete(propiedadID)
         setEstadoBoton(true);
-        
     }
 
 

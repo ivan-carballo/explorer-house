@@ -1,0 +1,24 @@
+#nuevo-div-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    & > #nuevo-form {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+
+        & input {
+            font-size: 1.1rem;
+            margin: 5px 0;
+            border-radius: 15px;
+            padding: 5px 15px;
+        }
+
+        & > #nuevo-button {
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-weight: 650;
+        }
+    }
+}
