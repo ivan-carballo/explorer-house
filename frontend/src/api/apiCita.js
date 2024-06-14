@@ -22,8 +22,31 @@ async function citaCreate(data) {
 
 
 
+  async function citaDelete(id) {
+    try {
+      const response = await fetch(`http://localhost:3015/cita/remove/${id}`, {
+        method: 'POST',
+        headers: { 
+          'Content-type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error al eliminar la cita (HTTP ${response.status})`);
+      }
+  
+      const result = await response.json();
+      //console.log('Cita eliminada:', result);
+    } catch (error) {
+      console.error('Error al eliminar la cita:', error);
+    }
+  }
+
+
+
 
   export {
     getCita,
-    citaCreate
+    citaCreate,
+    citaDelete
   }
