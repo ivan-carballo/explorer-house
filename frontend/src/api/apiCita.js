@@ -22,6 +22,7 @@ async function citaCreate(data) {
 
 
 
+
   async function citaDelete(id) {
     try {
       const response = await fetch(`http://localhost:3015/cita/remove/${id}`, {
