@@ -34,6 +34,26 @@ function NewPropiedad() {
         const formAltura = e.target.form[5].value
         const formPrecio = e.target.form[6].value
         
+
+        const propiedadArrayNew = {'tipo': formTipo, 
+                                    'ciudad': formCiudad, 
+                                    'descripcion': formDescripcion,
+                                    'habitaciones': formHabitaciones,
+                                    'metros': formMetros,
+                                    'altura': formAltura,
+                                    'precio': formPrecio,
+                                    'vendor': formVendor
+                                }
+
+        const data = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(propiedadArrayNew),
+            };
+
+        const userCrear = await createPropiedad(data)
     }
 
 
