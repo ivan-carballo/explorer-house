@@ -8,7 +8,7 @@ const router  = Router();
 
 router.post("/",citaAPIController.create);
 router.post("/find",citaAPIController.getByProperty);
-router.post("/remove/id:",citaAPIController.remove);
+router.post("/remove/:id",citaAPIController.remove);
 router.post("/update/:id",citaAPIController.update);
 
 

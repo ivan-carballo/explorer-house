@@ -52,8 +52,9 @@ function Index() {
 
     async function newCita(e) {
         const propiedadID = e.target.id
-        const vendor = e.target.parentElement.childNodes[8].lastChild.data
+        const vendor = e.target.parentElement.childNodes[4].previousElementSibling.childNodes[4].lastChild.data
         const id = Cookies.get('id')
+        
         
         let listUser = await userLogin()
         listUser = listUser.data
