@@ -1,14 +1,14 @@
 import { useState } from 'react'
 /* import './App.css' */
-import Cabecera from './components/cabecera/Cabecera.jsx'
+import NavBar from './components/navbar/NavBar.jsx'
 import Inmuebles from './components/Inmuebles.jsx'
 function App() {
 
   return (
     <>
-      <Cabecera />
+      <NavBar />
 
-      <Inmuebles />
+
 
     </>
   )
