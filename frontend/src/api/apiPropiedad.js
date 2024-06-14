@@ -4,6 +4,8 @@
     return (propiedad)
   }
 
+
+  
   const createPropiedad = async(propiedadData)=>{
     const result = await fetchData("http://localhost:3015/propiedad","post",propiedadData);
     return result;

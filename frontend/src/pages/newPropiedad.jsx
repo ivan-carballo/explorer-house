@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
+import { sha256 } from 'js-sha256'
+import Cookies from 'js-cookie';
+
 import { Navbar } from "../componentes/navbar.jsx";
+import { createPropiedad } from "../api/apiPropiedad";
+import { userLogin } from "../api/apiUser";
 
 
 import "../scss/newPropiedad.scss"
@@ -9,8 +14,26 @@ import "../scss/newPropiedad.scss"
 function NewPropiedad() {
 
 
-    async function enviarPropiedad() {
+    async function enviarPropiedad(e) {
+        let formVendor;
 
+        let users = await userLogin()
+        users = await users.data
+
+        for (let i = 0; users.length > i; i++) {
+            if (sha256(users[i].username) == Cookies.get('username')) {
+                formVendor = users[i].username
+            }
+        }
+
+        const formTipo = e.target.form[0].value
+        const formCiudad = e.target.form[1].value
+        const formDescripcion = e.target.form[2].value
+        const formHabitaciones = e.target.form[3].value
+        const formMetros = e.target.form[4].value
+        const formAltura = e.target.form[5].value
+        const formPrecio = e.target.form[6].value
+        
     }
 
 
