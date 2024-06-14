@@ -59,6 +59,23 @@ function Index() {
                 setListado(propiedadesDiv)
                 setRecarga(false)
             }
+
+/*             const propiedadesDiv = getArray.map((data) => 
+                <div id='div-pisos' key={data._id}>
+                    <h1>{data.tipo} en {data.ciudad}</h1>
+                    <p id='descripcion'>{data.descripcion}</p>
+                    <img id='img-pisos' src={data.imagen} />
+                    <ul className="detalles-piso">
+                        <li>Habitaciones: {data.habitacion}</li>
+                        <li>Metros: {data.metros}</li>
+                        <li>Altura: {data.altura}</li>
+                        <li>Precio: {data.precio}</li>
+                        <li>Vendedor: {data.vendor}</li>
+                    </ul>
+                    <input id={data._id} className="button-pisos" type="button" value={buttonCita} onClick={newCita} />
+                </div>
+            )
+            setListado(propiedadesDiv) */
         }
     }, [recarga]); 
  
@@ -105,9 +122,12 @@ function Index() {
     return (
         <>
             <Navbar />
+            <h2 id="titulo-pagina">Pisos Disponibles:</h2>
             <div id='div-body'>
                 {listado}
             </div>
+            <div id="circulo-decoracion"></div>
+            <div id="circulo-decoracion2"></div>
         </>
     )
 }
