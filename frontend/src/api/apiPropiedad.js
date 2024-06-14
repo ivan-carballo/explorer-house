@@ -4,9 +4,26 @@
     return (propiedad)
   }
 
-  const createPropiedad = async(propiedadData)=>{
+
+  
+/*   const createPropiedad = async(propiedadData)=>{
     const result = await fetchData("http://localhost:3015/propiedad","post",propiedadData);
     return result;
+  } */
+
+
+  async function createPropiedad(data) {
+    fetch('http://localhost:3015/propiedad', data)
+    .then(data => {
+        if (!data.ok) {
+          throw Error(data.status);
+         }
+         return data.json();
+        }).then(update => {
+        //console.log(update);
+        }).catch(e => {
+        console.log(e);
+        });
   }
 
     
@@ -21,7 +38,7 @@
         }).then(update => {
         //console.log(update);
         }).catch(e => {
-        //console.log(e);
+        console.log(e);
         });
   }
 

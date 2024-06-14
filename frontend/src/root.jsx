@@ -35,6 +35,7 @@ const Root = () => {
                 Cookies.set('username', sha256(username_));
                 Cookies.set('credential', password);
                 Cookies.set('id', userList[i]._id)
+                Cookies.set('role', userList[i].role)
                 navigate("/index");
             } else {
                 setAviso('Su usuario o contraseña no coinciden')
