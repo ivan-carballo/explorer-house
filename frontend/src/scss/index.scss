@@ -1,22 +1,28 @@
+@import "./colors.scss";
+
 #div-body{
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    margin-top: 5vh;
 
     & #div-pisos {
         display: flex;
         flex-direction: column;
-        background-color: rgba(22, 115, 238, 0.582);
+        background-color: whitesmoke;
         border-radius: 10px;
-        width: max-content;
-        margin: 10px;
-        padding: 20px;
+        width: 30vw;
+        margin: 1%;
+        padding: 2%;
+        border: 2px solid $azulReal;
 
         & > #img-pisos{
-            width: 30rem;
-            margin: 20px 0;
+            width: 100%;
+            margin: 2% 0;
             border-radius: 25px;
             align-self: center;
+            border: 3px solid $amarillo;
         }
 
         & > .button-pisos {
@@ -29,7 +35,7 @@
             width: max-content;
             padding: 4px 25px;
             align-self: center;
-            background-color: rgb(188, 222, 250);
+            background-color: $amarillo;
             border: 0;
             cursor: pointer;
         }
@@ -50,5 +56,36 @@
         margin-top: 0;
     }
 
+
+        & #div-pisos:hover {
+            background-color: $azulPastel;
+            color: white;
+            
+            border: 2px solid $azulReal;
+
+            
+            & > #img-pisos{
+                width: 100%;
+                margin: 2% 0;
+                border-radius: 25px;
+                align-self: center;
+                border: 3px solid white;
+            }
+    
+            & > .button-pisos {
+                background-color: white;
+                cursor: pointer;
+                border: 2px solid $azulReal;
+            }
+    
+            & > #descripcion {
+                text-align: center;
+                font-weight: 700;
+            }
+            
+            & > *{
+                font-weight: bolder;
+            }
+        }
     
 }

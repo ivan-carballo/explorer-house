@@ -1,8 +1,9 @@
 #div-links {
+    width: 100%;
     padding: 10px 0;
     display: flex;
     justify-content: space-around;
-    margin: -10px -10px 25px -15px;
+    margin: 0px;
     border-bottom: 2px solid blue;
 
     & > #logo-navbar {
@@ -20,6 +21,8 @@
 
         &:hover {
             font-style: italic;
+            font-weight: bolder;
+            color: blue;
         }
     }
 }
