@@ -83,7 +83,7 @@ function Index() {
             }
         }
 
-        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza'}
+        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Pendiente'}
 
         const data = {
             method: 'POST',

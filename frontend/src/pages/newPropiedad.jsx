@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { Navbar } from "../componentes/navbar.jsx";
 import { createPropiedad } from "../api/apiPropiedad";
 import { userLogin } from "../api/apiUser";
+import { getCita } from "../api/apiCita.js"
 
 
 import "../scss/newPropiedad.scss"
@@ -12,6 +13,53 @@ import "../scss/newPropiedad.scss"
 
 
 function NewPropiedad() {
+    const [citas, setCitas] = useState('')
+    const [recarga, setRecarga] = useState('true')
+    const [listado, setListado] = useState('')
+
+
+    useEffect(() => {
+        if (recarga) {
+            Citas()
+            async function Citas() {
+                setListado('')
+                const getAllCita = await getCita()
+                let getArrayCita = await getAllCita.data
+                getArrayCita.reverse()
+
+                let arrayCitaVendor = []
+
+                for (let i = 0; getArrayCita.length > i; i++) {
+                    if (sha256(getArrayCita[i].vendor) == Cookies.get('username')) {
+                        arrayCitaVendor.push(getArrayCita[i])
+                    }
+                }
+
+                const citasDiv = await arrayCitaVendor.map((data) =>
+                    <div id='div-citas' key={data._id}>
+                        <ul>
+                            <li>Fecha: {data.date}</li>
+                            <li>Usuario: {data.username}</li>
+                            <li>Estado: {data.state}</li>
+                        </ul>
+                        <input id={data._id} className="button-pisos" type="button" value='Aceptar' onClick={aceptarCita} />
+                        <input id={data._id} className="button-pisos" type="button" value='Denegar' onClick={denegarCita} />
+                    </div>
+                )
+                setListado(citasDiv)
+                setRecarga(false)
+            }
+        }
+    }, [recarga]); 
+
+
+    async function aceptarCita() {
+
+    }
+
+    async function denegarCita() {
+
+    }
 
 
     async function enviarPropiedad(e) {
@@ -61,21 +109,32 @@ function NewPropiedad() {
     return (
         <div id='nuevaPropiedad'>
             <Navbar />
-            <div id='nuevo-rotulo'>
-                <h1>Añadir nueva propiedad</h1>
-            </div>
-            <div id='nuevo-div-form'>
-                <form id='nuevo-form'>
-                    <input type="text" name="" id="" placeholder='Tipo' />
-                    <input type="text" name="" id="" placeholder='Ciudad' />
-                    <input type="text" name="" id="" placeholder='Descripcion' />
-                    <input type="number" min='0' name="" id="" placeholder='Habitaciones' />
-                    <input type="number" min='0' name="" id="" placeholder='Metros' />
-                    <input type="number" min='0' name="" id="" placeholder='Altura' />
-                    <input type="number" min='0' name="" id="" placeholder='Precio' />
-                    <input type="file" name="" id="" />
-                    <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
-                </form>
+            <div id='nuevo-cuerpo'>
+                <div id='nuevo-citas'>
+                    <h1>Solicitudes de citas</h1>
+                    <div id='nuevo-citas-div'>
+                        {listado}
+                    </div>
+                </div>
+
+                <div id='nuevo-propiedad'>
+                    <div id='nuevo-rotulo'>
+                        <h1>Añadir nueva propiedad</h1>
+                    </div>
+                    <div id='nuevo-div-form'>
+                        <form id='nuevo-form'>
+                            <input type="text" name="" id="" placeholder='Tipo' />
+                            <input type="text" name="" id="" placeholder='Ciudad' />
+                            <input type="text" name="" id="" placeholder='Descripcion' />
+                            <input type="number" min='0' name="" id="" placeholder='Habitaciones' />
+                            <input type="number" min='0' name="" id="" placeholder='Metros' />
+                            <input type="number" min='0' name="" id="" placeholder='Altura' />
+                            <input type="number" min='0' name="" id="" placeholder='Precio' />
+                            <input type="file" name="" id="" />
+                            <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     )
