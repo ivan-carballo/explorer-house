@@ -16,6 +16,7 @@ function NewPropiedad() {
     const [citas, setCitas] = useState('')
     const [recarga, setRecarga] = useState('true')
     const [listado, setListado] = useState('')
+    const [nuevaPropiedad, setNuevaPropiedad] = useState('')
 
 
     useEffect(() => {
@@ -126,7 +127,13 @@ function NewPropiedad() {
             body: JSON.stringify(propiedadArrayNew),
             };
 
-        const userCrear = await createPropiedad(data)
+            
+        if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
+            const userCrear = await createPropiedad(data)
+            setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
+        } else {
+            setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
+        }
     }
 
 
@@ -144,6 +151,7 @@ function NewPropiedad() {
                 <div id='nuevo-propiedad'>
                     <div id='nuevo-rotulo'>
                         <h1>Añadir nueva propiedad</h1>
+                        <h3>{nuevaPropiedad}</h3>
                     </div>
                     <div id='nuevo-div-form'>
                         <form id='nuevo-form'>
