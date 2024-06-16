@@ -47,6 +47,7 @@ function UserPanel() {
                     <div id='div-citas' key={data._id}>
                         <p>Fecha: {data.date}</p>
                         <p>Vendedor: {data.vendor}</p>
+                        <p>Estado de cita: {data.state}</p>
                         <input id={data._id} type="button" value="Eliminar cita" onClick={citaDeleteButton} />
                     </div>
                 )

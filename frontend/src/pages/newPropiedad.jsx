@@ -77,7 +77,7 @@ function NewPropiedad() {
             body: JSON.stringify(citaArrayUpdate),
             };
 
-        if (citaRevisarEstado.data.state !== 'Solicitud aceptada' || citaRevisarEstado.data.state !== 'Solicitud denegada') {
+        if (citaRevisarEstado.data.state == 'Solicitud pendiente de verificar') {
             const citaEstadoCambiar = await citaUpdate(buttonID, data)
             await setRecarga(true)
         }

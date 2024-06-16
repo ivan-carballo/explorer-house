@@ -83,7 +83,7 @@ function Index() {
             }
         }
 
-        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Pendiente'}
+        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Solicitud pendiente de verificar'}
 
         const data = {
             method: 'POST',
