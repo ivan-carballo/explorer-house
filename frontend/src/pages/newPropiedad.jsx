@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { Navbar } from "../componentes/navbar.jsx";
 import { createPropiedad } from "../api/apiPropiedad";
 import { userLogin } from "../api/apiUser";
-import { getCita } from "../api/apiCita.js"
+import { getCita, getCitaByID, citaUpdate } from "../api/apiCita.js"
 
 
 import "../scss/newPropiedad.scss"
@@ -42,8 +42,8 @@ function NewPropiedad() {
                             <li>Usuario: {data.username}</li>
                             <li>Estado: {data.state}</li>
                         </ul>
-                        <input id={data._id} className="button-pisos" type="button" value='Aceptar' onClick={aceptarCita} />
-                        <input id={data._id} className="button-pisos" type="button" value='Denegar' onClick={denegarCita} />
+                        <input id={data._id} className="button-pisos" type="button" value='Aceptar' onClick={estadoCita} />
+                        <input id={data._id} className="button-pisos" type="button" value='Denegar' onClick={estadoCita} />
                     </div>
                 )
                 setListado(citasDiv)
@@ -53,13 +53,37 @@ function NewPropiedad() {
     }, [recarga]); 
 
 
-    async function aceptarCita() {
+    
+    async function estadoCita(e) {
+        let nuevoEstado;
+        if (e.target.value === 'Aceptar') {
+            nuevoEstado = 'Solicitud aceptada'
+        } else if (e.target.value == 'Denegar') {
+            nuevoEstado = 'Solicitud denegada'
+        } else {
+            nuevoEstado = 'Solicitud pendiente de verificar'
+        }
 
+        let buttonID = e.target.id
+        const citaRevisarEstado = await getCitaByID(buttonID)
+
+        const citaArrayUpdate = {'state': nuevoEstado}
+
+        const data = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(citaArrayUpdate),
+            };
+
+        if (citaRevisarEstado.data.state !== 'Solicitud aceptada' || citaRevisarEstado.data.state !== 'Solicitud denegada') {
+            const citaEstadoCambiar = await citaUpdate(buttonID, data)
+            await setRecarga(true)
+        }
     }
 
-    async function denegarCita() {
 
-    }
 
 
     async function enviarPropiedad(e) {
