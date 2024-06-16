@@ -33,6 +33,7 @@ function NewPropiedad() {
         const formMetros = e.target.form[4].value
         const formAltura = e.target.form[5].value
         const formPrecio = e.target.form[6].value
+        const formImagen = e.target.form[7].value
         
 
         const propiedadArrayNew = {'tipo': formTipo, 
@@ -72,6 +73,7 @@ function NewPropiedad() {
                     <input type="number" min='0' name="" id="" placeholder='Metros' />
                     <input type="number" min='0' name="" id="" placeholder='Altura' />
                     <input type="number" min='0' name="" id="" placeholder='Precio' />
+                    <input type="file" name="" id="" />
                     <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
                 </form>
             </div>
