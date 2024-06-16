@@ -5,6 +5,13 @@ async function getCita() {
 }
 
 
+async function getCitaByID(id) {
+  let cita = await fetch(`http://localhost:3015/cita/${id}`);
+  cita = await cita.json();
+  return (cita)
+}
+
+
 
 async function citaCreate(data) {
     fetch('http://localhost:3015/cita', data)
@@ -44,10 +51,27 @@ async function citaCreate(data) {
   }
 
 
+  async function citaUpdate(id, data) {
+    fetch(`http://localhost:3015/cita/update/${id}`, data)
+    .then(data => {
+        if (!data.ok) {
+          throw Error(data.status);
+         }
+         return data.json();
+        }).then(update => {
+        //console.log(update);
+        }).catch(e => {
+        //console.log(e);
+        });
+  }
+
+
 
 
   export {
     getCita,
+    getCitaByID,
     citaCreate,
-    citaDelete
+    citaDelete,
+    citaUpdate
   }

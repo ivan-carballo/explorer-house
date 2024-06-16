@@ -53,29 +53,12 @@ function Index() {
                             <li>Precio: {data.precio}</li>
                             <li>Vendedor: {data.vendor}</li>
                         </ul>
-                        <input id={data._id} className="button-pisos" type="button" value={userCitas.includes(data._id) ? 'Cita solicitada' : 'Pedir cita'} onClick={newCita} />
+                        <input id={data._id} className="button-pisos" type="button" value={userCitas.includes(data._id) ? 'Cita solicitada' : (sha256(data.vendor) == Cookies.get('username') ? 'Es tu propiedad' : 'Pedir cita') } onClick={newCita} />
                     </div>
                 )
                 setListado(propiedadesDiv)
                 setRecarga(false)
             }
-
-/*             const propiedadesDiv = getArray.map((data) => 
-                <div id='div-pisos' key={data._id}>
-                    <h1>{data.tipo} en {data.ciudad}</h1>
-                    <p id='descripcion'>{data.descripcion}</p>
-                    <img id='img-pisos' src={data.imagen} />
-                    <ul className="detalles-piso">
-                        <li>Habitaciones: {data.habitacion}</li>
-                        <li>Metros: {data.metros}</li>
-                        <li>Altura: {data.altura}</li>
-                        <li>Precio: {data.precio}</li>
-                        <li>Vendedor: {data.vendor}</li>
-                    </ul>
-                    <input id={data._id} className="button-pisos" type="button" value={buttonCita} onClick={newCita} />
-                </div>
-            )
-            setListado(propiedadesDiv) */
         }
     }, [recarga]); 
  
@@ -100,7 +83,7 @@ function Index() {
             }
         }
 
-        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza'}
+        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Solicitud pendiente de verificar'}
 
         const data = {
             method: 'POST',

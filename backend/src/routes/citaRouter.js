@@ -13,6 +13,7 @@ router.post("/update/:id",citaAPIController.update);
 
 
 router.get("/",citaAPIController.getAll);
+router.get("/:id", citaAPIController.getById)
 
 
 export default router;
