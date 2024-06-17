@@ -75,8 +75,13 @@ function UserPanel() {
 
     async function citaDeleteButton(e) {
         const propiedadID = e.target.id
-        const citaCrear = await citaDelete(propiedadID)
-        setEstadoBoton(true);
+        let citaEstado = e.target.parentElement.childNodes[5].innerText
+
+        if (citaEstado.includes('pendiente')) {
+            const citaCrear = await citaDelete(propiedadID)
+            setEstadoBoton(true);        
+        }
+
     }
 
 
