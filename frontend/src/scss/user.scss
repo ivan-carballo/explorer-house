@@ -1,3 +1,5 @@
+@import "./colors.scss";
+
 #datos {
     text-align: center;
 }
@@ -10,15 +12,43 @@
     & > #div-citas {
         display: flex;
         flex-direction: column;
-        background-color: rgba(22, 115, 238, 0.753);
-        border-radius: 15px;
-        padding: 15px 25px;
-        margin: 5px 15px;
-        width: max-content;
-        justify-self: center;
+        background-color: whitesmoke;
+        border-radius: 10px;
+        width: 28vw;
+        margin-bottom: 5vh;
+        padding: 2%;
+        border: 2px solid $azulReal;
+
+        & h3 {
+            text-align: center;
+        }
 
         & p {
             margin: 2px 0;
+        }
+
+        & > #div-img-cita {
+            width: 90%;
+            margin: 2% 0;
+            border-radius: 25px;
+            align-self: center;
+            border: 3px solid $amarillo;
+        }
+
+        & > #div-estado-cita {
+            margin: 10px 0;
+        }
+
+        & > .div-button-delete {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        & > .div-button-delete:hover {
+            background-color: red;
+            color: whitesmoke;
         }
     }
 }
