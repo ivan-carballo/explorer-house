@@ -54,7 +54,7 @@ function UserPanel() {
                 let arrayFiltrado = listCitaArray.filter(objeto => Object.keys(objeto).length !== 0);
 
                 const citasDiv = await arrayFiltrado.map((data) => 
-                    <div id='div-citas' key={data[4]}>
+                    <div id='div-citas' key={data[4]} className={data[3] == 'Solicitud aceptada' ? 'aceptada' : data[3] == 'Solicitud denegada' ? 'denegada' : 'pendiente'}>
                         <h3>{data[5]}</h3>
                         <p>Fecha: {data[1]}</p>
                         <p>Vendedor: {data[2]}</p>

@@ -37,7 +37,7 @@ function NewPropiedad() {
                 }
 
                 const citasDiv = await arrayCitaVendor.map((data) =>
-                    <div id='div-citas' key={data._id}>
+                    <div id='div-citas' key={data._id} className={data.state == 'Solicitud aceptada' ? 'aceptada' : data.state == 'Solicitud denegada' ? 'denegada' : 'pendiente'}>
                         <ul>
                             <li>Fecha: {data.date}</li>
                             <li>Usuario: {data.username}</li>
