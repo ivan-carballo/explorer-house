@@ -12,6 +12,7 @@ import '../scss/user.scss'
 function UserPanel() {
     const [listCitas, setListCitas] = useState('')
     const [estadoBoton, setEstadoBoton] = useState(true);
+    const [noDelete, setNoDelete] = useState('')
 
 
 
@@ -62,6 +63,7 @@ function UserPanel() {
                         <img id='div-img-cita' src={data[8]} />
                         <p id='div-estado-cita'>Estado de cita: {data[3]}</p>
                         <input id={data[4]} className="div-button-delete" type="button" value="Eliminar cita" onClick={citaDeleteButton} />
+                        <h4 id='div-citas-delete'>{noDelete}</h4>
                     </div>
                 )
                 setListCitas(citasDiv)
@@ -80,6 +82,14 @@ function UserPanel() {
         if (citaEstado.includes('pendiente')) {
             const citaCrear = await citaDelete(propiedadID)
             setEstadoBoton(true);        
+        } else {
+            setNoDelete('No se permite eliminar citas cuando el vendedor ya ha dado una respuesta')
+            setEstadoBoton(true);   
+
+            setTimeout(() => {
+                setNoDelete('')
+                setEstadoBoton(true);   
+            }, 7500);
         }
 
     }

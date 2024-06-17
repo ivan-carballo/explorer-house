@@ -61,5 +61,10 @@
             background-color: red;
             color: whitesmoke;
         }
+
+        & > #div-citas-delete {
+            text-align: center;
+            font-weight: 300;
+        }
     }
 }
