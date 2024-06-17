@@ -102,10 +102,10 @@
     background-color: $amarillo;
     border-radius: 50%;
     width: 25vw;
-    height: 50vh;
+    height: 25vw;
     position: fixed;
     z-index: -100;
-    top: 75vh;
+    bottom: -12.5vw;
     left: -12.5vw;
 }
 
@@ -113,9 +113,9 @@
     background-color: $amarillo;
     border-radius: 50%;
     width: 25vw;
-    height: 50vh;
+    height: 25vw;
     position: fixed;
     z-index: -100;
-    top: 75vh;
+    top: -12.5vw;
     right: -12.5vw;
 }
