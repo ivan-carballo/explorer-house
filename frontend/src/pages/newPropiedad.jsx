@@ -17,6 +17,8 @@ function NewPropiedad() {
     const [recarga, setRecarga] = useState('true')
     const [listado, setListado] = useState('')
     const [nuevaPropiedad, setNuevaPropiedad] = useState('')
+    const [verificada, setVerificada] = useState('')
+
 
 
     useEffect(() => {
@@ -83,6 +85,12 @@ function NewPropiedad() {
             setTimeout(() => {
                 setRecarga(true)
             }, 300);
+        } else {
+            setVerificada('No se permite cambiar el estado una vez que la cita ha sido aceptada o denegada')
+
+            setTimeout(() => {
+                setVerificada('')
+            }, 7500);
         }
     }
 
@@ -145,6 +153,7 @@ function NewPropiedad() {
             <div id='nuevo-cuerpo'>
                 <div id='nuevo-citas'>
                     <h1>Solicitudes de citas</h1>
+                    <h4 id='div-citas-delete'>{verificada}</h4>
                     <div id='nuevo-citas-div'>
                         {listado}
                     </div>

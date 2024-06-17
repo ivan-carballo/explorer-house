@@ -63,7 +63,6 @@ function UserPanel() {
                         <img id='div-img-cita' src={data[8]} />
                         <p id='div-estado-cita'>Estado de cita: {data[3]}</p>
                         <input id={data[4]} className="div-button-delete" type="button" value="Eliminar cita" onClick={citaDeleteButton} />
-                        <h4 id='div-citas-delete'>{noDelete}</h4>
                     </div>
                 )
                 setListCitas(citasDiv)
@@ -84,11 +83,9 @@ function UserPanel() {
             setEstadoBoton(true);        
         } else {
             setNoDelete('No se permite eliminar citas cuando el vendedor ya ha dado una respuesta')
-            setEstadoBoton(true);   
 
             setTimeout(() => {
                 setNoDelete('')
-                setEstadoBoton(true);   
             }, 7500);
         }
 
@@ -103,6 +100,7 @@ function UserPanel() {
             <div id='user-html'>
                 <div id='datos'>
                     <h1>Citas solicitadas:</h1>
+                    <h4 id='div-citas-delete'>{noDelete}</h4>
                 </div>
                 <div id='citas'>
                     {listCitas}
