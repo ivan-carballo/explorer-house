@@ -103,7 +103,9 @@ function Index() {
 
         if (citaPedida == 'Pedir cita') {
             const citaCrear = await citaCreate(data)
-            setRecarga(true)
+            setTimeout(() => {
+                setRecarga(true)
+            }, 300);
         }
     }
 

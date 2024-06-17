@@ -80,7 +80,9 @@ function NewPropiedad() {
 
         if (citaRevisarEstado.data.state == 'Solicitud pendiente de verificar') {
             const citaEstadoCambiar = await citaUpdate(buttonID, data)
-            await setRecarga(true)
+            setTimeout(() => {
+                setRecarga(true)
+            }, 300);
         }
     }
 
