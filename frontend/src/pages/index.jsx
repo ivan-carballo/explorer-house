@@ -7,6 +7,7 @@ import { Navbar } from "../componentes/navbar.jsx";
 import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256';
 import { activeLogin } from "../funciones/activeLogin.js"
+import { FormatearFecha } from "../funciones/fecha.js"
 
 import "../scss/index.scss"
 
@@ -75,6 +76,8 @@ function Index() {
         let listUser = await userLogin()
         listUser = listUser.data
 
+        const fechaNow = await FormatearFecha(Date.now())
+
         let username;
 
         for (let i = 0; listUser.length > i; i++) {
@@ -83,7 +86,12 @@ function Index() {
             }
         }
 
-        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Solicitud pendiente de verificar'}
+        const citaArrayNew = await {'username': username, 
+                            'propiedad': propiedadID, 
+                            'date': fechaNow, 
+                            'vendor': vendor, 
+                            'place': 'Plaza', 
+                            'state': 'Solicitud pendiente de verificar'}
 
         const data = {
             method: 'POST',
