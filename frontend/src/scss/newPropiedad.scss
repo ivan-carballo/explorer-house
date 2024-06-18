@@ -1,3 +1,7 @@
+#nuevaPropiedad {
+    margin-top: 120px;
+}
+
 #nuevo-cuerpo {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -17,6 +21,7 @@
         margin: 10px;
         width: 75%;
         align-items: center;
+        border: solid blue 2px;
 
         & > #div-citas-ul {
             margin-right: 15px;
@@ -25,10 +30,11 @@
         & > #div-citas-img {
             width: 85%;
             border-radius: 25px;
+            margin-bottom: 10px;
         }
 
         & > #div-citas-buttons {
-            margin-top: 15px;
+            margin: 10px 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
