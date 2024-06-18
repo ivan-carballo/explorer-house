@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
+import React from 'react';
 import { sha256 } from 'js-sha256'
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
+
 
 import { Navbar } from "../componentes/navbar.jsx";
-import { createPropiedad } from "../api/apiPropiedad";
+import { createPropiedad, getPropiedad } from "../api/apiPropiedad";
 import { userLogin } from "../api/apiUser";
 import { getCita, getCitaByID, citaUpdate } from "../api/apiCita.js"
+import { chunkString } from "../funciones/chunks.js";
 
 
 import "../scss/newPropiedad.scss"
+
 
 
 
@@ -17,6 +21,9 @@ function NewPropiedad() {
     const [recarga, setRecarga] = useState('true')
     const [listado, setListado] = useState('')
     const [nuevaPropiedad, setNuevaPropiedad] = useState('')
+    const [verificada, setVerificada] = useState('')
+    const [imageUrl, setImageUrl] = useState('');
+
 
 
     useEffect(() => {
@@ -28,23 +35,47 @@ function NewPropiedad() {
                 let getArrayCita = await getAllCita.data
                 getArrayCita.reverse()
 
+                let listPropiedad = await getPropiedad()
+                listPropiedad = await listPropiedad.data
+
                 let arrayCitaVendor = []
+                let arrayCitaUni = []
 
                 for (let i = 0; getArrayCita.length > i; i++) {
                     if (sha256(getArrayCita[i].vendor) == Cookies.get('username')) {
-                        arrayCitaVendor.push(getArrayCita[i])
+                        arrayCitaUni.push(getArrayCita[i].date) //0
+                        arrayCitaUni.push(getArrayCita[i].username) //1
+                        arrayCitaUni.push(getArrayCita[i].state) //2
+                        arrayCitaUni.push(getArrayCita[i]._id) //3
+
+                        for (let j = 0; listPropiedad.length > j; j++) {
+                            if (getArrayCita[i].propiedad == listPropiedad[j]._id) {
+                                arrayCitaUni.push(`${listPropiedad[j].tipo} en ${listPropiedad[j].ciudad}`) //4
+                                arrayCitaUni.push(listPropiedad[j].descripcion) //5
+                                arrayCitaUni.push(listPropiedad[j].imagen) //6
+                            }
+                        }
                     }
+                    arrayCitaVendor.push(arrayCitaUni)
+                    arrayCitaUni = []
                 }
 
-                const citasDiv = await arrayCitaVendor.map((data) =>
-                    <div id='div-citas' key={data._id}>
-                        <ul>
-                            <li>Fecha: {data.date}</li>
-                            <li>Usuario: {data.username}</li>
-                            <li>Estado: {data.state}</li>
+                let arrayFiltrado = arrayCitaVendor.filter(objeto => Object.keys(objeto).length !== 0);
+
+                const citasDiv = await arrayFiltrado.map((data) =>
+                    <div id='div-citas' key={data[3]} className={data[2] == 'Solicitud aceptada' ? 'aceptada' : data[2] == 'Solicitud denegada' ? 'denegada' : 'pendiente'}>
+                        <ul id='div-citas-ul'>
+                            <li>Fecha: {data[0]}</li>
+                            <li>{data[4]}</li>
+                            <li>{data[5]}</li>
+                            <li>Usuario: {data[1]}</li>
+                            <li>Estado: {data[2]}</li>
                         </ul>
-                        <input id={data._id} className="button-pisos" type="button" value='Aceptar' onClick={estadoCita} />
-                        <input id={data._id} className="button-pisos" type="button" value='Denegar' onClick={estadoCita} />
+                        <img id='div-citas-img' src={data[6] != null ? data[6]: '../../public/noPhoto.avif'} />
+                        <div id='div-citas-buttons'>
+                            <input id={data[3]} className="button-pisos button-aceptar" type="button" value='Aceptar' onClick={estadoCita} />
+                            <input id={data[3]} className="button-pisos button-denegar" type="button" value='Denegar' onClick={estadoCita} />
+                        </div>
                     </div>
                 )
                 setListado(citasDiv)
@@ -80,10 +111,17 @@ function NewPropiedad() {
 
         if (citaRevisarEstado.data.state == 'Solicitud pendiente de verificar') {
             const citaEstadoCambiar = await citaUpdate(buttonID, data)
-            await setRecarga(true)
+            setTimeout(() => {
+                setRecarga(true)
+            }, 300);
+        } else {
+            setVerificada('No se permite cambiar el estado una vez que la cita ha sido aceptada o denegada')
+
+            setTimeout(() => {
+                setVerificada('')
+            }, 7500);
         }
     }
-
 
 
 
@@ -109,33 +147,63 @@ function NewPropiedad() {
         const formImagen = e.target.form[7].value
         
 
-        const propiedadArrayNew = {'tipo': formTipo, 
-                                    'ciudad': formCiudad, 
-                                    'descripcion': formDescripcion,
-                                    'habitaciones': formHabitaciones,
-                                    'metros': formMetros,
-                                    'altura': formAltura,
-                                    'precio': formPrecio,
-                                    'vendor': formVendor
-                                }
+        let file = e.target.form[7].files[0];
 
-        const data = {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(propiedadArrayNew),
+        const reader = new FileReader();
+    
+        reader.onloadend = async () => {
+            let textBase64 = reader.result
+            const fragmentos = [];
+
+            const chunks = chunkString(textBase64, 10000);
+
+
+            for (let i = 0; i < textBase64.length; i += 200) {
+                fragmentos.push(textBase64.substring(i, i + 200));
+            }
+
+            //console.log(textBase64)
+            //console.log(chunks);
+
+            const propiedadArrayNew = {'tipo': formTipo, 
+                'ciudad': formCiudad, 
+                'descripcion': formDescripcion,
+                'habitaciones': formHabitaciones,
+                'metros': formMetros,
+                'altura': formAltura,
+                'precio': formPrecio,
+                'vendor': formVendor,
+                //'imagen': fragmentos
+            }
+    
+    
+            const data = {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(propiedadArrayNew),
             };
+    
+    
+            if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
+                const userCrear = await createPropiedad(data)
+                setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
+            } else {
+                setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
+            }
 
-            
-        if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
-            const userCrear = await createPropiedad(data)
-            setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
-        } else {
-            setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
+
         }
+
+        reader.readAsDataURL(file);
+        
     }
 
+
+
+
+    
 
     return (
         <div id='nuevaPropiedad'>
@@ -143,6 +211,7 @@ function NewPropiedad() {
             <div id='nuevo-cuerpo'>
                 <div id='nuevo-citas'>
                     <h1>Solicitudes de citas</h1>
+                    <h4 id='div-citas-delete'>{verificada}</h4>
                     <div id='nuevo-citas-div'>
                         {listado}
                     </div>
@@ -171,6 +240,7 @@ function NewPropiedad() {
         </div>
     )
 }
+
 
 
 export {
