@@ -30,7 +30,7 @@ function Index() {
                 setListado('')
                 const getAll = await getPropiedad()
                 let getArray = await getAll.data
-                getArray.sort()
+                getArray.reverse()
 
                 const getCitas = await getCita()
                 let getArrayCitas = await getCitas.data
@@ -42,11 +42,19 @@ function Index() {
                     }
                 }
 
+                async function textToBase(data) {
+                    let datos = await data.data
+                    let frag = await datos.join("")
+                    console.log(frag)
+                    return frag
+                }
+
+
                 const propiedadesDiv = await getArray.map((data) =>
                     <div id='div-pisos' key={data._id}>
                         <h1>{data.tipo} en {data.ciudad}</h1>
                         <p id='descripcion'>{data.descripcion}</p>
-                        <img id='img-pisos' src={data.imagen} />
+                        <img id='img-pisos' src={data.imagen != null ? data.imagen: '../../public/noPhoto.avif'} />
                         <ul>
                             <li>Habitaciones: {data.habitacion}</li>
                             <li>Metros: {data.metros}</li>

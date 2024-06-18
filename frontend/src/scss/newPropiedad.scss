@@ -3,11 +3,57 @@
     grid-template-columns: 2fr 1fr;
 }
 
-#div-citas {
-    border-radius: 15px;
-    width: max-content;
-    padding: 10px;
-    margin: 10px;
+#nuevo-citas-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+
+    & > #div-citas {
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        width: max-content;
+        padding: 10px;
+        margin: 10px;
+        width: 75%;
+        align-items: center;
+
+        & > #div-citas-ul {
+            margin-right: 15px;
+        }
+
+        & > #div-citas-img {
+            width: 85%;
+            border-radius: 25px;
+        }
+
+        & > #div-citas-buttons {
+            margin-top: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            & input {
+                font-size: 1.1rem;
+                border-radius: 10px;
+                padding: 5px 8px;
+                cursor: pointer;
+                border: 0;
+            }
+
+            & > .button-aceptar:hover {
+                background-color: rgb(26, 133, 35);
+                color: beige;
+            }
+
+            & > .button-denegar:hover {
+                background-color: rgb(138, 28, 28);
+                color: beige;
+            }
+        }
+
+    }
+
 }
 
 .aceptada {
