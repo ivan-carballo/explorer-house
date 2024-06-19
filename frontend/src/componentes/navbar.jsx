@@ -29,7 +29,6 @@ const Navbar = () => {
         let allCitas = await getCita()
         allCitas = await allCitas.data
 
-        //let arrayFiltrado = allCitas.filter(objeto => Object.keys(objeto.vendor) == 'aldino');
         let arrayFiltrado = allCitas.filter((citas) => sha256(citas.vendor) == Cookies.get('username'));
         arrayFiltrado = arrayFiltrado.filter((citas2) => citas2.state == 'Solicitud pendiente de verificar')
 
