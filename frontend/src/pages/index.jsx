@@ -35,18 +35,12 @@ function Index() {
                 const getCitas = await getCita()
                 let getArrayCitas = await getCitas.data
                 let userCitas = '';
+                
 
                 for (let i = 0; getArrayCitas.length > i; i++) {
                     if (sha256(getArrayCitas[i].username) == user) {
                         userCitas += getArrayCitas[i].propiedad
                     }
-                }
-
-                async function textToBase(data) {
-                    let datos = await data.data
-                    let frag = await datos.join("")
-                    console.log(frag)
-                    return frag
                 }
 
 
