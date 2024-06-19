@@ -8,7 +8,6 @@ import { Navbar } from "../componentes/navbar.jsx";
 import { createPropiedad, getPropiedad } from "../api/apiPropiedad";
 import { userLogin } from "../api/apiUser";
 import { getCita, getCitaByID, citaUpdate } from "../api/apiCita.js"
-import { chunkString } from "../funciones/chunks.js";
 
 
 import "../scss/newPropiedad.scss"
@@ -148,23 +147,13 @@ function NewPropiedad() {
         
 
         let file = e.target.form[7].files[0];
-
         const reader = new FileReader();
-    
-        reader.onloadend = async () => {
-            let textBase64 = reader.result
-            const fragmentos = [];
 
-            const chunks = chunkString(textBase64, 10000);
+        reader.onload = async function(e) {
+            const base64Image = e.target.result;
 
-
-            for (let i = 0; i < textBase64.length; i += 200) {
-                fragmentos.push(textBase64.substring(i, i + 200));
-            }
-
-            //console.log(textBase64)
-            //console.log(chunks);
-
+          
+            
             const propiedadArrayNew = {'tipo': formTipo, 
                 'ciudad': formCiudad, 
                 'descripcion': formDescripcion,
@@ -173,7 +162,7 @@ function NewPropiedad() {
                 'altura': formAltura,
                 'precio': formPrecio,
                 'vendor': formVendor,
-                //'imagen': fragmentos
+                'imagen': base64Image
             }
     
     
@@ -184,8 +173,9 @@ function NewPropiedad() {
                 },
                 body: JSON.stringify(propiedadArrayNew),
             };
-    
-    
+
+
+
             if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
                 const userCrear = await createPropiedad(data)
                 setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
@@ -193,10 +183,45 @@ function NewPropiedad() {
                 setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
             }
 
-
         }
+        
+        reader.readAsDataURL(file); 
+        
 
-        reader.readAsDataURL(file);
+
+
+/* 
+        const propiedadArrayNew = {'tipo': formTipo, 
+                'ciudad': formCiudad, 
+                'descripcion': formDescripcion,
+                'habitaciones': formHabitaciones,
+                'metros': formMetros,
+                'altura': formAltura,
+                'precio': formPrecio,
+                'vendor': formVendor
+                //'imagen': base64Image
+            }
+    
+    
+        const data = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(propiedadArrayNew),
+        };
+
+
+
+        if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
+            //const userCrear = await createPropiedad(data)
+            setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
+        } else {
+            setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
+        } */
+
+
+    
         
     }
 
