@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "666707f7ba0808dc296a3cbf"
+  },
+  "tipo": "piso",
+  "ciudad": "Bilbao",
+  "descripcion": "Piso amueblado y exterior",
+  "habitaciones": 3,
+  "metros": 80,
+  "altura": 4,
+  "precio": 180000,
+  "__v": 0,
+  "imagen": "../../public/piso.jpg"
+},
+{
+  "_id": {
+    "$oid": "666709b26237d39fc8cbaa06"
+  },
+  "tipo": "altillo",
+  "ciudad": "Olabeaga",
+  "descripcion": "Piso amueblado, recien reformado, interior",
+  "habitaciones": 2,
+  "metros": 60,
+  "altura": 4,
+  "precio": 150000,
+  "__v": 0,
+  "imagen": "../../public/altillo.webp"
+},
+{
+  "_id": {
+    "$oid": "666709e66237d39fc8cbaa08"
+  },
+  "tipo": "casa",
+  "ciudad": "Zorroza",
+  "descripcion": "Casa rustica, buena comunicacion",
+  "habitaciones": 6,
+  "metros": 110,
+  "altura": 2,
+  "precio": 220000,
+  "__v": 0,
+  "imagen": "../../public/casa.jpg"
+}]

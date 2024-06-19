@@ -26,11 +26,11 @@ const buttonStyle = {
 };
 
 // Componente PropertyCard
-const TarjetaInmueble = ({ type, ciudad, url, descripcion, habitaciones, metros, altura, precio }) => (
+const TarjetaInmueble = ({ type, ciudad, descripcion, habitaciones, metros, altura, precio, imagen }) => (
     <div style={cardStyle}>
         <h2>{type} en {ciudad}</h2>
         <p>{descripcion}</p>
-        <img src={url} alt={type} />
+        <img src={imagen} alt={type}    />
         <ul>
             <li>Habitaciones: {habitaciones}</li>
             <li>Metros cuadrados: {metros} m²</li>
