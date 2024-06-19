@@ -1,49 +1,37 @@
 @import "./colors.scss";
 
 @media (max-width: 749px) {
+    .div-circular{
+        border-radius: 50%;
+        width: 45vw;
+        height: 45vw;
+        position: fixed;
+        z-index: -100;
+    }
 
     #circulo-forma{
         background-color: $amarillo;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
-        bottom: -12.5vw;
-        left: -12.5vw;
+        bottom: -22.5vw;
+        left: -22.5vw;
     }
     
     #circulo-forma2{
         background-color: $amarillo;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
-        top: -12.5vw;
-        right: -12.5vw;
+
+        top: -22.5vw;
+        right: -22.5vw;
     }
 
     #circulo-forma3{
         background-color: $azulPastel;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
-        top: -12.5vw;
-        left: -12.5vw;
+        top: -22.5vw;
+        left: -22.5vw;
     }
     
     #circulo-forma4{
         background-color: $azulPastel;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
-        bottom: -12.5vw;
-        right: -12.5vw;
+        bottom: -22.5vw;
+        right: -22.5vw;
     }
 
     #login-header {
@@ -90,10 +78,7 @@
             border-radius: 25px;
             padding: 2vw 5vw;
             width: 70vw;
-        }
-
-        & #login-inicio {
-            margin-bottom: 5vh;
+            margin-bottom: 8vh;
         }
 
         & h2 {
@@ -171,46 +156,35 @@
 
 @media (min-width: 750px) {
 
-    #circulo-forma{
-        background-color: $amarillo;
+    .div-circular{
         border-radius: 50%;
         width: 25vw;
         height: 25vw;
         position: fixed;
         z-index: -100;
+    }
+
+    #circulo-forma{
+        background-color: $amarillo;
         bottom: -12.5vw;
         left: -12.5vw;
     }
     
     #circulo-forma2{
         background-color: $amarillo;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
         top: -12.5vw;
         right: -12.5vw;
     }
 
     #circulo-forma3{
         background-color: $azulPastel;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
         top: -12.5vw;
         left: -12.5vw;
+        
     }
     
     #circulo-forma4{
         background-color: $azulPastel;
-        border-radius: 50%;
-        width: 25vw;
-        height: 25vw;
-        position: fixed;
-        z-index: -100;
         bottom: -12.5vw;
         right: -12.5vw;
     }

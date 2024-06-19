@@ -113,10 +113,10 @@ const Root = () => {
                     </form>
                 </div>
             </div>
-            <div id="circulo-forma"></div>
-            <div id="circulo-forma2"></div>
-            <div id="circulo-forma3"></div>
-            <div id="circulo-forma4"></div>
+            <div className='div-circular' id="circulo-forma"></div>
+            <div className='div-circular' id="circulo-forma2"></div>
+            <div className='div-circular' id="circulo-forma3"></div>
+            <div className='div-circular' id="circulo-forma4"></div>
         </div>
     )
 };

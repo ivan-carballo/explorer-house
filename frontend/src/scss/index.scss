@@ -1,121 +1,125 @@
 @import "./colors.scss";
 
-#titulo-pagina{
-    margin-top: 2vh;
-    margin-bottom: 0px;
-    margin-left: 2vw;
-}
+@media (min-width: 750px) {
 
-#div-body{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    margin-top: 3vh;
+    #titulo-pagina{
+        margin-top: 2vh;
+        margin-bottom: 0px;
+        margin-left: 2vw;
+    }
 
-    & #div-pisos {
-        display: flex;
-        flex-direction: column;
-        background-color: whitesmoke;
-        border-radius: 10px;
-        width: 28vw;
-        margin-bottom: 5vh;
-        padding: 2%;
-        border: 2px solid $azulReal;
+    #div-body{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        margin-top: 3vh;
 
-        & > #img-pisos{
-            width: 90%;
-            margin: 2% 0;
-            border-radius: 25px;
-            align-self: center;
-            border: 3px solid $amarillo;
+        & #div-pisos {
+            display: flex;
+            flex-direction: column;
+            background-color: whitesmoke;
+            border-radius: 10px;
+            width: 28vw;
+            margin-bottom: 5vh;
+            padding: 2%;
+            border: 2px solid $azulReal;
+
+            & > #img-pisos{
+                width: 90%;
+                margin: 2% 0;
+                border-radius: 25px;
+                align-self: center;
+                border: 3px solid $amarillo;
+            }
+
+            & > .button-pisos {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+                font-style: oblique;
+                font-weight: 700;
+                border-radius: 15px;
+                margin-top: 0px;
+                margin-bottom: 2vh;
+                width: max-content;
+                padding: 4px 25px;
+                align-self: center;
+                background-color: $amarillo;
+                border: 0;
+                cursor: pointer;
+            }
+
+            & > #descripcion {
+                text-align: center;
+                font-weight: 600;
+            }
+
+            & > .detalles-piso > li{
+                margin-bottom: 1vh;
+            }
+
         }
 
-        & > .button-pisos {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            font-style: oblique;
-            font-weight: 700;
-            border-radius: 15px;
-            margin-top: 0px;
-            margin-bottom: 2vh;
-            width: max-content;
-            padding: 4px 25px;
-            align-self: center;
-            background-color: $amarillo;
-            border: 0;
-            cursor: pointer;
+        & p {
+            margin: 0px;
         }
 
-        & > #descripcion {
+        & h1 {
             text-align: center;
-            font-weight: 600;
-        }
-
-        & > .detalles-piso > li{
+            margin-top: 1vh;
             margin-bottom: 1vh;
         }
 
-    }
 
-    & p {
-        margin: 0px;
-    }
-
-    & h1 {
-        text-align: center;
-        margin-top: 1vh;
-        margin-bottom: 1vh;
-    }
-
-
-        & #div-pisos:hover {
-            background-color: $azulPastel;
-            color: white;
-            
-            border: 2px solid $azulReal;
-
-            
-            & > #img-pisos{
-                border: 3px solid white;
-            }
-    
-            & > .button-pisos {
-                background-color: white;
-                cursor: pointer;
+            & #div-pisos:hover {
+                background-color: $azulPastel;
+                color: white;
+                
                 border: 2px solid $azulReal;
+
+                
+                & > #img-pisos{
+                    border: 3px solid white;
+                }
+        
+                & > .button-pisos {
+                    background-color: white;
+                    cursor: pointer;
+                    border: 2px solid $azulReal;
+                }
+        
+                & > #descripcion {
+                    text-align: center;
+                    font-weight: 700;
+                }
+                
+                & > *{
+                    font-weight: bolder;
+                }
             }
-    
-            & > #descripcion {
-                text-align: center;
-                font-weight: 700;
-            }
-            
-            & > *{
-                font-weight: bolder;
-            }
-        }
-    
+        
+    }
+
+    #circulo-decoracion{
+        background-color: $amarillo;
+        border-radius: 50%;
+        width: 25vw;
+        height: 25vw;
+        position: fixed;
+        z-index: -100;
+        bottom: -12.5vw;
+        left: -12.5vw;
+    }
+
+    #circulo-decoracion2{
+        background-color: $amarillo;
+        border-radius: 50%;
+        width: 25vw;
+        height: 25vw;
+        position: fixed;
+        z-index: -100;
+        top: -12.5vw;
+        right: -12.5vw;
+    }
 }
 
-#circulo-decoracion{
-    background-color: $amarillo;
-    border-radius: 50%;
-    width: 25vw;
-    height: 25vw;
-    position: fixed;
-    z-index: -100;
-    bottom: -12.5vw;
-    left: -12.5vw;
-}
-
-#circulo-decoracion2{
-    background-color: $amarillo;
-    border-radius: 50%;
-    width: 25vw;
-    height: 25vw;
-    position: fixed;
-    z-index: -100;
-    top: -12.5vw;
-    right: -12.5vw;
-}
