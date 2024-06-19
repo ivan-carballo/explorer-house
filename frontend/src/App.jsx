@@ -1,7 +1,8 @@
+import React, { useState } from 'react';
 import router from './router.jsx'
 import { RouterProvider } from 'react-router-dom'
-import NavBar from './components/navbar/NavBar.jsx'
-import Inmuebles from './components/Inmuebles.jsx'
+import NavBar from './componentes/navbar/NavBar.jsx'
+import Inmuebles from './componentes/Inmuebles.jsx'
 
 function App() {
 
