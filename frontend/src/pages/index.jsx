@@ -115,7 +115,7 @@ function Index() {
 
 
     return (
-        <>
+        <div id='index-cuerpo'>
             <Navbar />
             <h2 id="titulo-pagina">Pisos Disponibles:</h2>
             <div id='div-body'>
@@ -123,7 +123,7 @@ function Index() {
             </div>
             <div id="circulo-decoracion"></div>
             <div id="circulo-decoracion2"></div>
-        </>
+        </div>
     )
 }
 
