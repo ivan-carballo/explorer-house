@@ -216,7 +216,7 @@ function NewPropiedad() {
             <Navbar />
             <div id='nuevo-cuerpo'>
                 <div id='nuevo-citas'>
-                    <h1>Solicitudes de citas</h1>
+                    <h1 id='citas-rotulo'>Solicitudes de citas</h1>
                     <h4 id='div-citas-delete'>{verificada}</h4>
                     <div id='nuevo-citas-div'>
                         {listado}
