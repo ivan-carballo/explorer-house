@@ -1,8 +1,9 @@
 #div-links {
+    width: 100%;
     padding: 10px 0;
     display: flex;
     justify-content: space-around;
-    margin: -10px -10px 25px -15px;
+    margin: 0px;
     border-bottom: 2px solid blue;
 
     & > #logo-navbar {
@@ -20,6 +21,66 @@
 
         &:hover {
             font-style: italic;
+            font-weight: bolder;
+            color: blue;
         }
     }
 }
+
+
+#navbar-global {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+}
+
+
+.link-admin {
+    text-decoration: none;
+    align-self: center;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+
+    &:hover {
+        font-style: italic;
+        font-weight: bolder;
+        color: blue;
+    }
+}
+
+#nav-aviso {
+    text-decoration: none;
+    align-self: center;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: red;
+
+    &:hover {
+        font-style: italic;
+        font-weight: bolder;
+        color: red;
+    }
+}
+
+  
+#nav-aviso[title]:hover:after {
+    content: attr(title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgb(130, 207, 233);
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    color: rgb(31, 119, 42);
+    font-size: 2.5rem;
+}
+  
