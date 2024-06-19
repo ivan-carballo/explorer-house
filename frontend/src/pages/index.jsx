@@ -7,6 +7,7 @@ import { Navbar } from "../componentes/navbar.jsx";
 import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256';
 import { activeLogin } from "../funciones/activeLogin.js"
+import { FormatearFecha } from "../funciones/fecha.js"
 
 import "../scss/index.scss"
 
@@ -29,7 +30,7 @@ function Index() {
                 setListado('')
                 const getAll = await getPropiedad()
                 let getArray = await getAll.data
-                getArray.sort()
+                getArray.reverse()
 
                 const getCitas = await getCita()
                 let getArrayCitas = await getCitas.data
@@ -41,11 +42,19 @@ function Index() {
                     }
                 }
 
+                async function textToBase(data) {
+                    let datos = await data.data
+                    let frag = await datos.join("")
+                    console.log(frag)
+                    return frag
+                }
+
+
                 const propiedadesDiv = await getArray.map((data) =>
                     <div id='div-pisos' key={data._id}>
                         <h1>{data.tipo} en {data.ciudad}</h1>
                         <p id='descripcion'>{data.descripcion}</p>
-                        <img id='img-pisos' src={data.imagen} />
+                        <img id='img-pisos' src={data.imagen != null ? data.imagen: '../../public/noPhoto.avif'} />
                         <ul>
                             <li>Habitaciones: {data.habitacion}</li>
                             <li>Metros: {data.metros}</li>
@@ -75,6 +84,8 @@ function Index() {
         let listUser = await userLogin()
         listUser = listUser.data
 
+        const fechaNow = await FormatearFecha(Date.now())
+
         let username;
 
         for (let i = 0; listUser.length > i; i++) {
@@ -83,7 +94,12 @@ function Index() {
             }
         }
 
-        const citaArrayNew = {'username':username, 'propiedad':propiedadID, 'date': Date.now(), 'vendor': vendor, 'place': 'Plaza', 'state': 'Solicitud pendiente de verificar'}
+        const citaArrayNew = await {'username': username, 
+                            'propiedad': propiedadID, 
+                            'date': fechaNow, 
+                            'vendor': vendor, 
+                            'place': 'Plaza', 
+                            'state': 'Solicitud pendiente de verificar'}
 
         const data = {
             method: 'POST',
@@ -95,7 +111,9 @@ function Index() {
 
         if (citaPedida == 'Pedir cita') {
             const citaCrear = await citaCreate(data)
-            setRecarga(true)
+            setTimeout(() => {
+                setRecarga(true)
+            }, 300);
         }
     }
 

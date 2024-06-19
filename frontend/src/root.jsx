@@ -61,7 +61,14 @@ const Root = () => {
         } else if (password != repeatPassword) {
             setMensaje('Las contraseñas elegidas no coinciden entre ellas')
         } else {
-            setMensaje('')
+
+            let form_name = document.getElementById('form-name')
+            form_name.value = ''     
+            let form_pass = document.getElementById('form-pass')
+            form_pass.value = ''  
+            let form_repass = document.getElementById('form-repass')
+            form_repass.value = ''                                 
+
             setMensaje('Su usuario se ha creado correctamente')
 
             const userArrayNew = {'username':username, 'password':password, 'role':'user'}
@@ -106,9 +113,9 @@ const Root = () => {
                 <div id='login-cuadro-nuevo'>
                     <form id='login-nuevo'>
                         <h2>Crear nuevo usuario</h2>
-                        <input type="text" placeholder='Username' />
-                        <input type="password" name="Password" placeholder='Password' />
-                        <input type="password" name="RepeatPassword" placeholder='Repeat Password' />
+                        <input type="text" id='form-name' placeholder='Username' />
+                        <input type="password" id='form-pass' name="Password" placeholder='Password' />
+                        <input type="password" id='form-repass' name="RepeatPassword" placeholder='Repeat Password' />
                         <input id='login-submit' type="button" value="Crear usuario" onClick={create} />
                     </form>
                 </div>

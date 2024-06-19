@@ -18,7 +18,7 @@ const Navbar = () => {
 
 
     return (
-        <div>
+        <div id='navbar-global'>
             <nav>
                 <div id='div-links'>
                     <img id='logo-navbar' src="../../public/explorerhouselogo.jpg" />

@@ -12,6 +12,7 @@ import '../scss/user.scss'
 function UserPanel() {
     const [listCitas, setListCitas] = useState('')
     const [estadoBoton, setEstadoBoton] = useState(true);
+    const [noDelete, setNoDelete] = useState('')
 
 
 
@@ -27,28 +28,41 @@ function UserPanel() {
 
                 const name_ = Cookies.get('username')
                 let listCitaArray = []
-                let listPropiedadArray = []
+                let listCitaUni = []
 
 
                 for (let i = 0; listCita.length > i; i++) {
                     if (name_ == sha256(listCita[i].username)) {
-                        listCitaArray.push(listCita[i])
+                        listCitaUni.push(listCita[i].username) //0
+                        listCitaUni.push(listCita[i].date) //1
+                        listCitaUni.push(listCita[i].vendor) //2
+                        listCitaUni.push(listCita[i].state) //3
+                        listCitaUni.push(listCita[i]._id) //4
 
                         for (let j = 0; listPropiedad.length > j; j++) {
                             if (listCita[i].propiedad == listPropiedad[j]._id) {
-                                listPropiedadArray.push(listPropiedad[j])
+                                listCitaUni.push(`${listPropiedad[j].tipo} en ${listPropiedad[j].ciudad}`) //5
+                                listCitaUni.push(listPropiedad[j].descripcion) //6
+                                listCitaUni.push(listPropiedad[j].precio) //7
+                                listCitaUni.push(listPropiedad[j].imagen) //8
                             }
                         }
                     }
+                    listCitaArray.push(listCitaUni)
+                    listCitaUni = []
                 }
 
-                
-                const citasDiv = await listCitaArray.map((data) => 
-                    <div id='div-citas' key={data._id}>
-                        <p>Fecha: {data.date}</p>
-                        <p>Vendedor: {data.vendor}</p>
-                        <p>Estado de cita: {data.state}</p>
-                        <input id={data._id} type="button" value="Eliminar cita" onClick={citaDeleteButton} />
+                let arrayFiltrado = listCitaArray.filter(objeto => Object.keys(objeto).length !== 0);
+
+                const citasDiv = await arrayFiltrado.map((data) => 
+                    <div id='div-citas' key={data[4]} className={data[3] == 'Solicitud aceptada' ? 'aceptada' : data[3] == 'Solicitud denegada' ? 'denegada' : 'pendiente'}>
+                        <h3>{data[5]}</h3>
+                        <p>Fecha: {data[1]}</p>
+                        <p>Vendedor: {data[2]}</p>
+                        <p>Precio: {data[7]}</p>
+                        <img id='div-img-cita' src={data[8] != null ? data[8]: '../../public/noPhoto.avif'} />
+                        <p id='div-estado-cita'>Estado de cita: {data[3]}</p>
+                        <input id={data[4]} className="div-button-delete" type="button" value="Eliminar cita" onClick={citaDeleteButton} />
                     </div>
                 )
                 setListCitas(citasDiv)
@@ -62,8 +76,19 @@ function UserPanel() {
 
     async function citaDeleteButton(e) {
         const propiedadID = e.target.id
-        const citaCrear = await citaDelete(propiedadID)
-        setEstadoBoton(true);
+        let citaEstado = e.target.parentElement.childNodes[5].innerText
+
+        if (citaEstado.includes('pendiente')) {
+            const citaCrear = await citaDelete(propiedadID)
+            setEstadoBoton(true);        
+        } else {
+            setNoDelete('No se permite eliminar citas cuando el vendedor ya ha dado una respuesta')
+
+            setTimeout(() => {
+                setNoDelete('')
+            }, 7500);
+        }
+
     }
 
 
@@ -74,7 +99,8 @@ function UserPanel() {
             <Navbar />
             <div id='user-html'>
                 <div id='datos'>
-                    <h1>Citas solicitadas</h1>
+                    <h1>Citas solicitadas:</h1>
+                    <h4 id='div-citas-delete'>{noDelete}</h4>
                 </div>
                 <div id='citas'>
                     {listCitas}
