@@ -1,12 +1,54 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './NavBar.css';
 import { FaShoppingCart, FaHome, FaUser, FaUserPlus, FaBuilding, FaMapMarkerAlt, FaWarehouse, FaAddressBook, FaCoins, FaUserMinus } from 'react-icons/fa';
-
-
-
 const NavBar = () => {
+
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const [allInmuebles, setInmuebles] = useState([{
+    "_id": {
+      "$oid": "666707f7ba0808dc296a3cbf"
+    },
+    "tipo": "piso",
+    "ciudad": "Bilbao",
+    "descripcion": "Piso amueblado y exterior",
+    "habitaciones": 3,
+    "metros": 80,
+    "altura": 4,
+    "precio": 180000,
+    "__v": 0,
+    "imagen": "../../public/piso.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "666709b26237d39fc8cbaa06"
+    },
+    "tipo": "altillo",
+    "ciudad": "Olabeaga",
+    "descripcion": "Piso amueblado, recien reformado, interior",
+    "habitaciones": 2,
+    "metros": 60,
+    "altura": 4,
+    "precio": 150000,
+    "__v": 0,
+    "imagen": "../../public/altillo.webp"
+  },
+  {
+    "_id": {
+      "$oid": "666709e66237d39fc8cbaa08"
+    },
+    "tipo": "casa",
+    "ciudad": "Zorroza",
+    "descripcion": "Casa rustica, buena comunicacion",
+    "habitaciones": 6,
+    "metros": 110,
+    "altura": 2,
+    "precio": 220000,
+    "__v": 0,
+    "imagen": "../../public/casa.jpg"
+  }]);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -16,8 +58,16 @@ const NavBar = () => {
     window.location.href = url;
   };
 
-  const buscaporprecio = (rango1,rango2) => {
-    // Lógica para buscar por precio
+  const buscarporprecio = (rango1,rango2) => {
+
+    const filteredInmuebles = allInmuebles.filter(inmueble => inmueble.precio >= rango1 && inmueble.precio <= rango2);
+    
+    setInmuebles(filteredInmuebles);
+
+    setDropdownOpen(false);
+
+   
+
   };
 
   const handlelogout = () => {
@@ -54,10 +104,10 @@ const NavBar = () => {
   {dropdownOpen && (
     <ul className="dropdown__menu">
       <li><b><p  className="texto">Buscar por precio</p></b></li>
-      <li><button onClick={() => buscaporprecio(70000,150000)}><FaCoins /> 70000-150000</button></li>
-      <li><button onClick={() => buscaporprecio(150001,300000)}><FaCoins /> 150001-300000</button></li>
-      <li><button onClick={() => buscaporprecio(300001,500000)}><FaCoins /> 300001-500000</button></li>
-      <li><button onClick={() => buscaporprecio(500001,2000000)}><FaCoins /> 500001 +</button></li>
+      <li><button onClick={() => buscarporprecio(70000,150000)}><FaCoins /> 70000-150000</button></li>
+      <li><button onClick={() => buscarporprecio(150001,300000)}><FaCoins /> 150001-300000</button></li>
+      <li><button onClick={() => buscarporprecio(300001,500000)}><FaCoins /> 300001-500000</button></li>
+      <li><button onClick={() => buscarporprecio(500001,2000000)}><FaCoins /> 500001 +</button></li>
     </ul>
   )}
 </li>
@@ -65,7 +115,7 @@ const NavBar = () => {
           <button className="boton" onClick={() => handleNavigation('/login')}><FaUserPlus /> Login/Register </button>
         </li>
         <li>
-          <button className="boton" onClick={() => handlelogout()}><FaUserMinus /> Logout</button>
+          <button className="boton" onClick={() => handlelogout()}><FaUserMinus />Logout</button>
         </li>
         <li>
         <button className="boton" onClick={() => handleNavigation('/usuario')}>
