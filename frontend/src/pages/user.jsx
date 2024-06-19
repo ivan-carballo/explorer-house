@@ -59,7 +59,7 @@ function UserPanel() {
                         <h3>{data[5]}</h3>
                         <p>Fecha: {data[1]}</p>
                         <p>Vendedor: {data[2]}</p>
-                        <p>Precio: {data[7]}</p>
+                        <p>Precio: {data[7]} €</p>
                         <img id='div-img-cita' src={data[8] != null ? data[8]: '../../public/noPhoto.avif'} />
                         <p id='div-estado-cita'>Estado de cita: {data[3]}</p>
                         <input id={data[4]} className="div-button-delete" type="button" value="Eliminar cita" onClick={citaDeleteButton} />

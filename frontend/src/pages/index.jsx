@@ -35,18 +35,12 @@ function Index() {
                 const getCitas = await getCita()
                 let getArrayCitas = await getCitas.data
                 let userCitas = '';
+                
 
                 for (let i = 0; getArrayCitas.length > i; i++) {
                     if (sha256(getArrayCitas[i].username) == user) {
                         userCitas += getArrayCitas[i].propiedad
                     }
-                }
-
-                async function textToBase(data) {
-                    let datos = await data.data
-                    let frag = await datos.join("")
-                    console.log(frag)
-                    return frag
                 }
 
 
@@ -56,10 +50,10 @@ function Index() {
                         <p id='descripcion'>{data.descripcion}</p>
                         <img id='img-pisos' src={data.imagen != null ? data.imagen: '../../public/noPhoto.avif'} />
                         <ul>
-                            <li>Habitaciones: {data.habitacion}</li>
+                            <li>Habitaciones: {data.habitaciones}</li>
                             <li>Metros: {data.metros}</li>
                             <li>Altura: {data.altura}</li>
-                            <li>Precio: {data.precio}</li>
+                            <li>Precio: {data.precio} €</li>
                             <li>Vendedor: {data.vendor}</li>
                         </ul>
                         <input id={data._id} className="button-pisos" type="button" value={userCitas.includes(data._id) ? 'Cita solicitada' : (sha256(data.vendor) == Cookies.get('username') ? 'Es tu propiedad' : 'Pedir cita') } onClick={newCita} />
@@ -121,7 +115,7 @@ function Index() {
 
 
     return (
-        <>
+        <div id='index-cuerpo'>
             <Navbar />
             <h2 id="titulo-pagina">Pisos Disponibles:</h2>
             <div id='div-body'>
@@ -129,7 +123,7 @@ function Index() {
             </div>
             <div id="circulo-decoracion"></div>
             <div id="circulo-decoracion2"></div>
-        </>
+        </div>
     )
 }
 
