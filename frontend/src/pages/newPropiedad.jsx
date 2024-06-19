@@ -8,7 +8,6 @@ import { Navbar } from "../componentes/navbar.jsx";
 import { createPropiedad, getPropiedad } from "../api/apiPropiedad";
 import { userLogin } from "../api/apiUser";
 import { getCita, getCitaByID, citaUpdate } from "../api/apiCita.js"
-import { chunkString } from "../funciones/chunks.js";
 
 
 import "../scss/newPropiedad.scss"
@@ -17,12 +16,10 @@ import "../scss/newPropiedad.scss"
 
 
 function NewPropiedad() {
-    const [citas, setCitas] = useState('')
     const [recarga, setRecarga] = useState('true')
     const [listado, setListado] = useState('')
     const [nuevaPropiedad, setNuevaPropiedad] = useState('')
     const [verificada, setVerificada] = useState('')
-    const [imageUrl, setImageUrl] = useState('');
 
 
 
@@ -148,23 +145,13 @@ function NewPropiedad() {
         
 
         let file = e.target.form[7].files[0];
-
         const reader = new FileReader();
-    
-        reader.onloadend = async () => {
-            let textBase64 = reader.result
-            const fragmentos = [];
 
-            const chunks = chunkString(textBase64, 10000);
+        reader.onload = async function(e) {
+            const base64Image = e.target.result;
 
-
-            for (let i = 0; i < textBase64.length; i += 200) {
-                fragmentos.push(textBase64.substring(i, i + 200));
-            }
-
-            //console.log(textBase64)
-            //console.log(chunks);
-
+          
+            
             const propiedadArrayNew = {'tipo': formTipo, 
                 'ciudad': formCiudad, 
                 'descripcion': formDescripcion,
@@ -173,7 +160,7 @@ function NewPropiedad() {
                 'altura': formAltura,
                 'precio': formPrecio,
                 'vendor': formVendor,
-                //'imagen': fragmentos
+                'imagen': base64Image
             }
     
     
@@ -184,20 +171,39 @@ function NewPropiedad() {
                 },
                 body: JSON.stringify(propiedadArrayNew),
             };
-    
-    
+
+
+
             if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
+
+                let form_tipo = document.getElementById('form-tipo')
+                form_tipo.value = ''
+                let form_ciudad = document.getElementById('form-ciudad')
+                form_ciudad.value = ''
+                let form_descripcion = document.getElementById('form-descripcion')
+                form_descripcion.value = ''
+                let form_habitaciones = document.getElementById('form-habitaciones')
+                form_habitaciones.value = ''
+                let form_metros = document.getElementById('form-metros')
+                form_metros.value = ''
+                let form_altura = document.getElementById('form-altura')
+                form_altura.value = ''
+                let form_precio = document.getElementById('form-precio')
+                form_precio.value = ''
+                let form_imagen = document.getElementById('form-imagen')
+                form_imagen.value = ''
+
                 const userCrear = await createPropiedad(data)
                 setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
+
             } else {
                 setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
             }
 
 
         }
-
-        reader.readAsDataURL(file);
         
+        formImagen.length > 0 ? reader.readAsDataURL(file) : '' ;
     }
 
 
@@ -224,14 +230,14 @@ function NewPropiedad() {
                     </div>
                     <div id='nuevo-div-form'>
                         <form id='nuevo-form'>
-                            <input type="text" name="" id="" placeholder='Tipo' />
-                            <input type="text" name="" id="" placeholder='Ciudad' />
-                            <input type="text" name="" id="" placeholder='Descripcion' />
-                            <input type="number" min='0' name="" id="" placeholder='Habitaciones' />
-                            <input type="number" min='0' name="" id="" placeholder='Metros' />
-                            <input type="number" min='0' name="" id="" placeholder='Altura' />
-                            <input type="number" min='0' name="" id="" placeholder='Precio' />
-                            <input type="file" name="" id="" />
+                            <input type="text" id='form-tipo' placeholder='Tipo' />
+                            <input type="text" id='form-ciudad' placeholder='Ciudad' />
+                            <input type="text" id='form-descripcion' placeholder='Descripcion' />
+                            <input type="number" id='form-habitaciones' min='0' placeholder='Habitaciones' />
+                            <input type="number" id='form-metros' min='0' placeholder='Metros' />
+                            <input type="number" id='form-altura' min='0' placeholder='Altura' />
+                            <input type="number" id='form-precio' min='0' placeholder='Precio' />
+                            <input type="file" id='form-imagen' />
                             <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
                         </form>
                     </div>

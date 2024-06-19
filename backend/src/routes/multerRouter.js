@@ -1,30 +1,52 @@
-/* import {Router} from "express";
 import express from 'express';
-import {multer} from 'multer';
+import cors from 'cors'; 
+import upload from './multer.js'; 
+import fs from 'fs'; 
+import {Router} from "express";
+
+
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+
+app.post('/', upload.single('file'), (req, res) => {
+    res.json({
+        fileName: req.fileName
+    });
+});
+
+
+
+
+app.get("/uploads/:file", (req, res) => {
+    const { file } = req.params; // nombre del archivo en la ruta
+    const filePath = `./uploads/${file}`; // ruta donde se encuentra el archivo
+    if (!fs.existsSync(filePath)) { // si el archivo no existe
+        res.status(404).send("File not found"); // devolvemos un error
+        return;
     }
-  });
-  
-  const upload = multer({ storage: storage });
-  
-
-  app.post('/', upload.single('image'), function (req, res, next) {
-    // Guardar la información de la imagen en la base de datos (MongoDB)
-    const imageUrl = req.file.path;
-    // Aquí puedes guardar la URL de la imagen en tu base de datos MongoDB
-    res.send('Imagen subida correctamente');
-  });
-  
+    res.sendFile(filePath, { root: "." }); // devolvemos el archivo. Es necesario root: "." para que la ruta sea relativa
+});
 
 
 
-export default router; */
+
+app.get("/uploads", (req, res) => {
+    const path = `./uploads/`; // ruta donde se encuentran los archivos
+    if (!fs.existsSync(path)) { // si el directorio no existe
+        res.status(404).send("Directory not found"); // devolvemos un error
+        return;
+    }
+    const files = fs.readdirSync(path); // lista de archivos
+    res.json(files); // devolvemos la lista de archivos
+});
+
+
+
+
+
+export default app;
