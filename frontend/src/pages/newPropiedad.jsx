@@ -174,34 +174,36 @@ function NewPropiedad() {
 
 
 
-            if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1 && formImagen.length > 0) {
+            if (formTipo.length > 1 && formCiudad.length > 1 && formDescripcion.length > 1 && formHabitaciones.length > 0 && formMetros.length > 0 && formAltura.length > 0 && formPrecio.length > 1) {
+
+                let form_tipo = document.getElementById('form-tipo')
+                form_tipo.value = ''
+                let form_ciudad = document.getElementById('form-ciudad')
+                form_ciudad.value = ''
+                let form_descripcion = document.getElementById('form-descripcion')
+                form_descripcion.value = ''
+                let form_habitaciones = document.getElementById('form-habitaciones')
+                form_habitaciones.value = ''
+                let form_metros = document.getElementById('form-metros')
+                form_metros.value = ''
+                let form_altura = document.getElementById('form-altura')
+                form_altura.value = ''
+                let form_precio = document.getElementById('form-precio')
+                form_precio.value = ''
+                let form_imagen = document.getElementById('form-imagen')
+                form_imagen.value = ''
+
                 const userCrear = await createPropiedad(data)
                 setNuevaPropiedad('La propiedad se ha dado de alta correctamente')
-/* 
-                let form_tipo = document.getElementById('form-tipo')
-                let form_ciudad = document.getElementById('form-ciudad')
-                let form_descripcion = document.getElementById('form-descripcion')
-                let form_habitaciones = document.getElementById('form-habitaciones')
-                let form_metros = document.getElementById('form-metros')
-                let form_altura = document.getElementById('form-altura')
-                let form_precio = document.getElementById('form-precio')
-                form_tipo.value = ''
-                form_ciudad.value = ''
-                form_descripcion.value = ''
-                form_habitaciones.value = ''
-                form_metros.value = ''
-                form_altura.value = ''
-                form_precio.value = '' */
 
             } else {
                 setNuevaPropiedad('Debe rellenar todos los campos de forma correcta')
             }
 
+
         }
         
         formImagen.length > 0 ? reader.readAsDataURL(file) : '' ;
-            
-        
     }
 
 
@@ -229,13 +231,13 @@ function NewPropiedad() {
                     <div id='nuevo-div-form'>
                         <form id='nuevo-form'>
                             <input type="text" id='form-tipo' placeholder='Tipo' />
-                            <input type="text" id='form-ciudad 'placeholder='Ciudad' />
+                            <input type="text" id='form-ciudad' placeholder='Ciudad' />
                             <input type="text" id='form-descripcion' placeholder='Descripcion' />
                             <input type="number" id='form-habitaciones' min='0' placeholder='Habitaciones' />
                             <input type="number" id='form-metros' min='0' placeholder='Metros' />
                             <input type="number" id='form-altura' min='0' placeholder='Altura' />
                             <input type="number" id='form-precio' min='0' placeholder='Precio' />
-                            <input type="file" />
+                            <input type="file" id='form-imagen' />
                             <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
                         </form>
                     </div>
