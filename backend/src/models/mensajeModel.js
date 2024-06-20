@@ -27,6 +27,10 @@ const userSchema  = new mongoose.Schema({
         required: false
     },
 
+    estado : {
+        type: String
+    }
+
 
 
 })

@@ -171,7 +171,8 @@ function Index() {
                                     'vendor': vendorMensaje, 
                                     'propiedad': propiedadMensaje, 
                                     'mensaje': textoMensaje, 
-                                    'date': dateMensaje }
+                                    'date': dateMensaje,
+                                    'estado': 'Enviado' }
 
         const data = {
             method: 'POST',
