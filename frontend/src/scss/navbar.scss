@@ -84,3 +84,31 @@
     font-size: 2.5rem;
 }
   
+.boton {
+    background-color: white;
+    color: black;
+    border-radius: 10em;
+    font-size: 16px; 
+    font-weight: 600;
+    padding: 0.5em 1em; 
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+    max-height: 40px;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    white-space: nowrap;
+    margin-top: 20px;
+  }
+  
+  .boton:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+  }
+  
+  .boton:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 black;
+  }

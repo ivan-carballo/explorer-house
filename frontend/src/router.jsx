@@ -9,9 +9,6 @@ import { Buscador } from "./pages/buscador.jsx"
 import HousesList from "./componentes/houses/houseList.jsx";
 
 
-
-
-
 const router = createBrowserRouter([
     {
       path: "/",
