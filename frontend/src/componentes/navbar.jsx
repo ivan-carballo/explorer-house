@@ -7,13 +7,15 @@ import { FaHome, FaUser, FaBuilding, FaMapMarkerAlt, FaWarehouse, FaAddressBook,
 import '../scss/navbar.scss'
 import { useState } from "react";
 
-import { getCita } from "../api/apiCita"
+import { getCita } from "../api/apiCita.js"
+import { userLogin } from "../api/apiUser.js"
 
 
 const Navbar = () => {
     const [aviso, setAviso] = useState('')
     const [navClass, setNavClass] = useState('link-admin')
     const [navEmergente, setNavEmergente] = useState('')
+    const [user, setUser] = useState('')
 
     const role = Cookies.get('role')
 
@@ -48,6 +50,20 @@ const Navbar = () => {
     }, 15000);
 
 
+    usuarioLogin()
+    async function usuarioLogin() {
+        let getUsuarios = await userLogin()
+        getUsuarios = getUsuarios.data
+
+        let usuarioFiltrado = getUsuarios.filter((dato) => sha256(dato.username) == Cookies.get('username'))
+        usuarioFiltrado = usuarioFiltrado[0].username
+        setUser(usuarioFiltrado)
+
+    }
+
+
+
+
     return (
         <div id='navbar-global'>
             <nav>
@@ -59,9 +75,7 @@ const Navbar = () => {
                     <NavLink to="/user" className='link'><FaUser /> User panel</NavLink>
                     {role == 'admin' ? <NavLink to="/new" className={navClass} id={aviso} title={navEmergente}><FaBuilding /> Alta y Citas</NavLink> : <></>}
                     {role == 'admin' ? <NavLink to="/propiedades" className='link'><FaBuilding /> Propiedades</NavLink> : <></>}
-                    <NavLink to="/" className='link' onClick={logout}><FaUserAltSlash /> Logout</NavLink>
-
-                    <img id='logo-navbar' src="../../public/explorerhouselogo.jpg" />
+                    <NavLink to="/" className='link' onClick={logout}><FaUserAltSlash /> Logout {user}</NavLink>
                 </div>
             </nav>
             <Outlet />
