@@ -20,6 +20,8 @@ function Index() {
     const [listado, setListado] = useState('')
     const [recarga, setRecarga] = useState(true)
     const [data, setData] = useState('')
+    const [mensajeEnviado, setMensajeEnviado] = useState('')
+    const [mensajeRechazado, setMensajeRechazado] = useState('')
     const user = Cookies.get('username')
 
     
@@ -151,20 +153,21 @@ function Index() {
 
 
     async function enviar(e) {
+        setMensajeRechazado('')
         let userList = await userLogin()
-        userList = userList.data
+        userList = await userList.data
 
-        let userFiltrar = userList.filter((dato) => sha256(dato.username) == user)
-        userFiltrar = userFiltrar[0].username
+        let userFiltrar = await userList.filter((dato) => sha256(dato.username) == user)
+        userFiltrar = await userFiltrar[0].username
 
         const userMensaje = userFiltrar
-        const textoMensaje = e.target.offsetParent.children[0].childNodes[1].lastChild.value
+        const textoMensaje = e.target.offsetParent.children[0].childNodes[3].lastChild.value
         const propiedadMensaje = e.target.id
         const dateMensaje = Date.now()
         const vendorMensaje = e.target.attributes[2].value
 
         
-        const mensajeArrayNew = await {'username': userMensaje, 
+        const mensajeArrayNew = {'username': userMensaje, 
                                     'vendor': vendorMensaje, 
                                     'propiedad': propiedadMensaje, 
                                     'mensaje': textoMensaje, 
@@ -179,19 +182,25 @@ function Index() {
         };
 
 
-        const mensajeCrear = await mensajeCreate(data)
+        if (textoMensaje !== undefined && textoMensaje.length > 5) {
+            const mensajeCrear = await mensajeCreate(data)
+            setMensajeEnviado('Su mensaje se ha enviado de forma correcta')
 
-        console.log(data)
-
-
-
-        
+            setTimeout(() => {
+                setData(null)
+                setMensajeEnviado('')
+            }, 5000);
+            
+        } else {
+            setMensajeRechazado('Su mensaje no ha podido ser entregado, recargue la pagina y vuelva a intentarlo')
+        }
     }
 
 
 
     async function cerrar() {
         setData(null)
+        setMensajeRechazado('')
     }
 
 
@@ -206,6 +215,8 @@ function Index() {
             <Modal isOpen={true}>
 
                 <div id='completo'>
+                    <h1 id='modal-enviado'>{mensajeEnviado}</h1>
+                    <h1 id='modal-rechazado'>{mensajeRechazado}</h1>
                     <h1 id='modal-rotulo'>Enviar mensaje a {data[9]} sobre {data[1]} en {data[2]}</h1>
                     <div id='modal-form'>
                         <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='25' cols='150' />

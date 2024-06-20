@@ -43,6 +43,19 @@
   display: flex;
   flex-direction: column;
 
+  & > #modal-enviado {
+    text-align: center;
+    color: rgb(40, 233, 40);
+    font-size: 2rem;
+  }
+
+  & > #modal-rechazado {
+    text-align: center;
+    color: rgb(230, 39, 39);
+    font-size: 2rem;
+    margin-top: -25px;
+  }
+
   & > #modal-rotulo {
     text-align: center;
     margin: 0;
