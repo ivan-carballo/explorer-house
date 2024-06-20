@@ -53,11 +53,11 @@ const Navbar = () => {
             <nav>
                 <div id='div-links'>
                     <img id='logo-navbar' src="../../public/explorerhouselogo.jpg" />
-                    <NavLink to="/index" className='link'><FaHome /> Index</NavLink>
-                    <NavLink to="/buscador" className='link'><FaSearch /> Buscador</NavLink>
-                    <NavLink to="/user" className='link'><FaUser /> Panel de usuario</NavLink>
+                    <NavLink to="/index" className='link boton'><FaHome /> Index</NavLink>
+                    <NavLink to="/buscador" className='link boton'><FaSearch /> Buscador</NavLink>
+                    <NavLink to="/user" className='link boton'><FaUser /> Panel de usuario</NavLink>
                     {role == 'admin' ? <NavLink to="/new" className={navClass} id={aviso} title={navEmergente}><FaBuilding /> Propiedades</NavLink> : <></>}
-                    <NavLink to="/" className='link' onClick={logout}><FaUserAltSlash /> Logout</NavLink>
+                    <NavLink to="/" className='link boton' onClick={logout}><FaUserAltSlash /> Logout</NavLink>
                     <img id='logo-navbar' src="../../public/explorerhouselogo.jpg" />
                 </div>
             </nav>
