@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256';
 import { activeLogin } from "../funciones/activeLogin.js"
 import { FormatearFecha } from "../funciones/fecha.js"
+import { Modal } from "../modal.jsx"
 
 import "../scss/index.scss"
 
@@ -17,6 +18,7 @@ import "../scss/index.scss"
 function Index() {
     const [listado, setListado] = useState('')
     const [recarga, setRecarga] = useState(true)
+    const [data, setData] = useState('')
     const user = Cookies.get('username')
 
     
@@ -87,7 +89,10 @@ function Index() {
                             <li>Precio: {data[8]} €</li>
                             <li>Vendedor: {data[9]}</li>
                         </ul>
-                        <input id={data[0]} className="button-pisos" type="button" value={data[10] != undefined ? data[10] : (sha256(data[9]) == Cookies.get('username') ? 'Es tu propiedad' : 'Pedir cita') } onClick={newCita} />
+                        <div id='buttons-index'>
+                            <input id={data[0]} className="button-pisos" type="button" value={data[10] != undefined ? data[10] : (sha256(data[9]) == Cookies.get('username') ? 'Es tu propiedad' : 'Pedir cita') } onClick={newCita} />
+                            {sha256(data[9]) != Cookies.get('username') ? <input id={data[0]} className="button-mensaje" type="button" value="Mensaje al vendedor" onClick={async ()=>{setData(data)}} /> : <></>}
+                        </div>
                     </div>
                 )
                 setListado(propiedadesDiv)
@@ -144,11 +149,31 @@ function Index() {
 
 
 
+    async function newMensaje() {
+        setData(data)
+    }
+
+
+
 
     return (
         <div id='index-cuerpo'>
             <Navbar />
             <h2 id="titulo-pagina">Pisos Disponibles:</h2>
+
+            {data && 
+            <Modal isOpen={true} onClose={()=> {
+                setData(null)
+                }}>
+
+                <div id='completo'>
+                    <h1>Esto es un modal</h1>
+                    {data[0]}
+                </div>
+
+              </Modal>
+            }
+
             <div id='div-body'>
                 {listado}
             </div>

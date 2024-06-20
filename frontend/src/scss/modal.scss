@@ -1,0 +1,38 @@
+.modal {   
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blanchedalmond;
+  }
+  
+  .modal-content {
+    background-color: rgb(59, 59, 59);
+    position: relative;
+    padding: 25px;
+    border-radius: 25px;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+    
+  #completo {
+    display: flex;
+  }
+  
+  #completo div {
+    padding: 0 20px;
+  }

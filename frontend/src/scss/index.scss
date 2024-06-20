@@ -37,21 +37,45 @@
                 border: 3px solid $amarillo;
             }
 
-            & > .button-pisos {
-                font-size: 1.2rem;
-                letter-spacing: 3px;
-                font-style: oblique;
-                font-weight: 700;
-                border-radius: 15px;
-                margin-top: 0px;
-                margin-bottom: 2vh;
-                width: max-content;
-                padding: 4px 25px;
-                align-self: center;
-                background-color: $amarillo;
-                border: 0;
-                cursor: pointer;
+            & > #buttons-index {
+                display: flex;
+                flex-direction: column;
+
+
+                & > .button-pisos {
+                    font-size: 1rem;
+                    letter-spacing: 3px;
+                    font-style: oblique;
+                    font-weight: 700;
+                    border-radius: 15px;
+                    margin-top: 0px;
+                    margin-bottom: 2vh;
+                    width: max-content;
+                    padding: 4px 25px;
+                    align-self: center;
+                    background-color: $amarillo;
+                    border: 0;
+                    cursor: pointer;
+                }
+
+                & > .button-mensaje {
+                    font-size: 1rem;
+                    letter-spacing: 3px;
+                    font-style: oblique;
+                    font-weight: 700;
+                    border-radius: 15px;
+                    margin-top: 0px;
+                    margin-bottom: 2vh;
+                    width: max-content;
+                    padding: 4px 25px;
+                    align-self: center;
+                    background-color: blue;
+                    color: white;
+                    border: 0;
+                    cursor: pointer;
+                }
             }
+
 
             & > #descripcion {
                 text-align: center;
