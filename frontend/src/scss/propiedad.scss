@@ -1,0 +1,20 @@
+#propiedad-cuerpo{
+    margin-top: 130px;
+}
+
+#rotulo-h1{
+    text-align: center;
+}
+
+#div-propiedades {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 85%;
+
+    & > #div-propiedades-cuadro {
+        display: flex;
+        flex-direction: column;
+        background-color: aquamarine;
+        width: 50%;
+    }
+}
