@@ -22,6 +22,11 @@ const userSchema  = new mongoose.Schema({
         required: true
     },
 
+    date : {
+        type: Date,
+        required: false
+    },
+
 
 
 })

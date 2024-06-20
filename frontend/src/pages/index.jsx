@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getPropiedad } from "../api/apiPropiedad.js"
 import { getCita, citaCreate } from "../api/apiCita.js"
 import { userLogin } from "../api/apiUser.js";
+import { mensajeCreate } from "../api/apiMensaje.js"
 
 import { Navbar } from "../componentes/navbar.jsx";
 import Cookies from 'js-cookie';
@@ -149,8 +150,48 @@ function Index() {
 
 
 
-    async function newMensaje() {
-        setData(data)
+    async function enviar(e) {
+        let userList = await userLogin()
+        userList = userList.data
+
+        let userFiltrar = userList.filter((dato) => sha256(dato.username) == user)
+        userFiltrar = userFiltrar[0].username
+
+        const userMensaje = userFiltrar
+        const textoMensaje = e.target.offsetParent.children[0].childNodes[1].lastChild.value
+        const propiedadMensaje = e.target.id
+        const dateMensaje = Date.now()
+        const vendorMensaje = e.target.attributes[2].value
+
+        
+        const mensajeArrayNew = await {'username': userMensaje, 
+                                    'vendor': vendorMensaje, 
+                                    'propiedad': propiedadMensaje, 
+                                    'mensaje': textoMensaje, 
+                                    'date': dateMensaje }
+
+        const data = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(mensajeArrayNew),
+        };
+
+
+        const mensajeCrear = await mensajeCreate(data)
+
+        console.log(data)
+
+
+
+        
+    }
+
+
+
+    async function cerrar() {
+        setData(null)
     }
 
 
@@ -162,13 +203,17 @@ function Index() {
             <h2 id="titulo-pagina">Pisos Disponibles:</h2>
 
             {data && 
-            <Modal isOpen={true} onClose={()=> {
-                setData(null)
-                }}>
+            <Modal isOpen={true}>
 
                 <div id='completo'>
-                    <h1>Esto es un modal</h1>
-                    {data[0]}
+                    <h1 id='modal-rotulo'>Enviar mensaje a {data[9]} sobre {data[1]} en {data[2]}</h1>
+                    <div id='modal-form'>
+                        <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='25' cols='150' />
+                    </div>
+                    <div id='modal-buttons'>
+                        <button className='buttonModal' onClick={cerrar}>Cerrar</button>
+                        <button className='buttonModal' onClick={enviar} id={data[0]} vendor={data[9]}>Enviar</button>
+                    </div>
                 </div>
 
               </Modal>

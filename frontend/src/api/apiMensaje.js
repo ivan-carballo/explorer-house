@@ -23,7 +23,7 @@ async function mensajeCreate(data) {
         }).then(update => {
         //console.log(update);
         }).catch(e => {
-        //console.log(e);
+        console.log(e);
         });
   }
 
@@ -44,7 +44,7 @@ async function mensajeCreate(data) {
       }
   
       const result = await response.json();
-      //console.log('mensaje eliminada:', result);
+      //console.log('mensaje eliminado:', result);
     } catch (error) {
       console.error('Error al eliminar el mensaje:', error);
     }

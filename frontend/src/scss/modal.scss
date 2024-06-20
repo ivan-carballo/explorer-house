@@ -36,3 +36,47 @@
   #completo div {
     padding: 0 20px;
   }
+
+
+#completo {
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+
+  & > #modal-rotulo {
+    text-align: center;
+    margin: 0;
+  }
+
+  & > #modal-form {
+
+    & > #modal-mensaje {
+      margin-top: 20px;
+      border-radius: 25px;
+      border: 0;
+      padding: 15px;
+      font-size: 1rem;
+    }
+  }
+
+  & > #modal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+
+    & > .buttonModal {
+      margin-top: 25px;
+      font-size: 1.5rem;
+      border: 0;
+      border-radius: 15px;
+      padding: 5px 20px;
+      background-color: rgb(137, 139, 250);
+      cursor: pointer;
+
+      &:hover {
+        background-color: blue;
+        color: white;
+      }
+    }
+  }
+
+}
