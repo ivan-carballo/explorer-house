@@ -22,6 +22,7 @@ function UserPanel() {
             async function Cita() {
                 let listCita = await getCita()
                 listCita = await listCita.data
+                listCita = listCita.reverse()
 
                 let listPropiedad = await getPropiedad()
                 listPropiedad = await listPropiedad.data
