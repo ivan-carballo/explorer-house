@@ -1,3 +1,5 @@
+@import "./colors.scss";
+
 .modal {   
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -8,11 +10,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: blanchedalmond;
+    color: white;
   }
   
   .modal-content {
-    background-color: rgb(59, 59, 59);
+    background-color: $azulPastel;
     position: relative;
     padding: 25px;
     border-radius: 25px;
@@ -82,8 +84,10 @@
       border: 0;
       border-radius: 15px;
       padding: 5px 20px;
-      background-color: rgb(137, 139, 250);
+      background-color: $amarillo;
       cursor: pointer;
+      font-weight: bolder;
+      color: white;
 
       &:hover {
         background-color: blue;
