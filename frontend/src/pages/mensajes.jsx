@@ -29,6 +29,7 @@ function Mensajes() {
                         <ul>
                             <li>Fecha: {data.date}</li>
                             <li>Usuario: {data.username}</li>
+                            <li>Estado: {data.estado}</li>
                             <li>Propiedad: {data.propiedad}</li>
                             <li>Mensaje: {data.mensaje}</li>
                         </ul>
