@@ -25,8 +25,17 @@ function Mensajes() {
                 let mensajesFiltrados = getMensajes.filter((data) => sha256(data.vendor) == Cookies.get('username'))
                 
                 const mensajesDiv = await mensajesFiltrados.map((data) => 
-                    <div id='div-mensajes'>
-                        
+                    <div id='div-mensaje-cuadro'>
+                        <ul>
+                            <li>Fecha: {data.date}</li>
+                            <li>Usuario: {data.username}</li>
+                            <li>Propiedad: {data.propiedad}</li>
+                            <li>Mensaje: {data.mensaje}</li>
+                        </ul>
+                        <div id='div-mensaje-cuadro-buttons'>
+                            <input type="button" value="Visto" />
+                            <input type="button" value="Contestar" />
+                        </div>
                     </div>
                 
                 )
@@ -43,7 +52,10 @@ function Mensajes() {
         <>
             <Navbar />
             <div id='mensajes-cuerpo'>
-                <h1>Aqui van los mensajes</h1>
+                <h1>Mensajes recibidos</h1>
+                <div id='div-mensajes'>
+                    {listaMensajes}
+                </div>
             </div>
         </>
     )

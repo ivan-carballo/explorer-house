@@ -96,7 +96,7 @@ const Navbar = () => {
 
     setInterval(() => {
         setRecarga(true)
-    }, 5000);
+    }, 30000);
 
 
 
@@ -108,11 +108,11 @@ const Navbar = () => {
                     <img id='logo-navbar' src="../../public/explorerhouselogo.jpg" />
 
                     <NavLink to="/index" className='link'><FaHome /> Index</NavLink>
-                    <NavLink to="/buscador" className='link'><FaSearch /> Buscador</NavLink>
+                    {/* <NavLink to="/buscador" className='link'><FaSearch /> Buscador</NavLink> */}
                     <NavLink to="/user" className='link'><FaUser /> User panel</NavLink>
                     {role == 'admin' ? <NavLink to="/new" className={navClass} id={aviso} title={navEmergente}><FaBuilding /> Alta y Citas</NavLink> : <></>}
                     {role == 'admin' ? <NavLink to="/propiedades" className='link'><FaBuilding /> Propiedades</NavLink> : <></>}
-                    <NavLink to="/mensajes" className={navClassMensaje} id={avisoMensaje} title={navMensaje}><FaInbox /> Mensajes</NavLink>
+                    <NavLink to="/mensajes" className={navClassMensaje} id={avisoMensaje} title={navMensaje}><FaInbox /> Inbox</NavLink>
                     <NavLink to="/" className='link' onClick={logout}><FaUserAltSlash /> Logout {user}</NavLink>
                 </div>
             </nav>
