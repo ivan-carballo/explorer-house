@@ -6,6 +6,7 @@ import { UserPanel } from "./pages/user.jsx";
 import { NewPropiedad } from "./pages/newPropiedad.jsx";
 import { Propiedad } from "./pages/Propiedad.jsx";
 import { Buscador } from "./pages/buscador.jsx"
+import { Mensajes } from "./pages/mensajes.jsx";
 import HousesList from "./componentes/houses/houseList.jsx";
 
 
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
         {
           path: "/propiedades",
           element: <Propiedad />
+        },
+
+        {
+          path: "/mensajes",
+          element: <Mensajes />
         }
 
       ]
