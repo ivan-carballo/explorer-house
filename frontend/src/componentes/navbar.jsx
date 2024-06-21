@@ -112,6 +112,9 @@ const Navbar = () => {
                     <NavLink to="/user" className='link'><FaUser /> User panel</NavLink>
                     {role == 'admin' ? <NavLink to="/new" className={navClass} id={aviso} title={navEmergente}><FaBuilding /> Alta y Citas</NavLink> : <></>}
                     {role == 'admin' ? <NavLink to="/propiedades" className='link'><FaBuilding /> Propiedades</NavLink> : <></>}
+                
+
+                    <img id='logo-navbar2' src="../../public/explorerhouselogo.jpg" />
                     <NavLink to="/mensajes" className={navClassMensaje} id={avisoMensaje} title={navMensaje}><FaInbox /> Inbox</NavLink>
                     <NavLink to="/" className='link' onClick={logout}><FaUserAltSlash /> Logout {user}</NavLink>
                 </div>

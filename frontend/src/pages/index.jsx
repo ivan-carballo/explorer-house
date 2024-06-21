@@ -239,8 +239,10 @@ function Index() {
             <div id='div-body'>
                 {listado}
             </div>
-            <div id="circulo-decoracion"></div>
-            <div id="circulo-decoracion2"></div>
+            <div className='div-circular' id="circulo-forma"></div>
+            <div className='div-circular' id="circulo-forma2"></div>
+            <div className='div-circular' id="circulo-forma3"></div>
+            <div className='div-circular' id="circulo-forma4"></div>
         </div>
     )
 }
