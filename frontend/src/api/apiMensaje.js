@@ -46,7 +46,7 @@ async function mensajeCreate(data) {
       const result = await response.json();
       //console.log('mensaje eliminado:', result);
     } catch (error) {
-      console.error('Error al eliminar el mensaje:', error);
+      //console.error('Error al eliminar el mensaje:', error);
     }
   }
 

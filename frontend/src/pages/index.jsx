@@ -108,16 +108,12 @@ function Index() {
 
 
     async function newCita(e) {
-        
-
 
         const citaPedida = e.target.attributes.value.value
         const propiedadID = e.target.id
         const vendor = e.target.parentElement.parentNode.childNodes[3].childNodes[4].childNodes[1].data
         const id = Cookies.get('id')
 
-        
-        
         
         let listUser = await userLogin()
         listUser = listUser.data
@@ -173,7 +169,7 @@ function Index() {
 
         
         const mensajeArrayNew = {'username': userMensaje, 
-                                    'vendor': vendorMensaje, 
+                                    'destino': vendorMensaje, 
                                     'propiedad': propiedadMensaje, 
                                     'mensaje': textoMensaje, 
                                     'date': dateMensaje,

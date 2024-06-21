@@ -7,7 +7,7 @@ const userSchema  = new mongoose.Schema({
         required: true
     },
 
-    vendor : {
+    destino : {
         type: String,
         required: true
     },

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mensajeCreate, getmensaje, mensajeUpdate } from "../api/apiMensaje.js"
+import { mensajeCreate, getmensaje, getmensajeByID, mensajeUpdate } from "../api/apiMensaje.js"
 import { Modal } from "../modal.jsx";
 
 import { Navbar } from "../componentes/navbar.jsx";
@@ -29,7 +29,7 @@ function Mensajes() {
                 getMensajes = getMensajes.data 
                 getMensajes.reverse()
 
-                let mensajesFiltrados = getMensajes.filter((data) => sha256(data.vendor) == Cookies.get('username'))
+                let mensajesFiltrados = getMensajes.filter((data) => sha256(data.destino) == Cookies.get('username'))
                 
                 const mensajesDiv = await mensajesFiltrados.map((data) => 
                     <div key={data._id} id='div-mensaje-cuadro'>
@@ -38,6 +38,7 @@ function Mensajes() {
                             <li>Usuario: {data.username}</li>
                             <li>Estado: {data.estado}</li>
                             <li>Propiedad: {data.propiedad}</li>
+                            {data.mensajeOriginal != undefined ? <li>Mensaje anterior: {data.mensajeOriginal}</li> : <></>}
                             <li>Mensaje: {data.mensaje}</li>
                         </ul>
                         <div id='div-mensaje-cuadro-buttons'>
@@ -83,59 +84,76 @@ function Mensajes() {
 
     async function enviar(e) {
         setMensajeRechazado('')
-        let userList = await userLogin()
-        userList = await userList.data
 
-        let userFiltrar = await userList.filter((dato) => sha256(dato.username) == user)
-        userFiltrar = await userFiltrar[0].username
+        const mensajeOriginalID = e.target.id
 
-        const userMensaje = userFiltrar
+        let mensajeContestar = await getmensajeByID(mensajeOriginalID)
+        mensajeContestar = mensajeContestar.data
+
         const textoMensaje = e.target.offsetParent.children[0].childNodes[3].lastChild.value
-        const propiedadMensaje = e.target.id
-        const dateMensaje = Date.now()
-        const vendorMensaje = e.target.attributes[2].value
+
+        const mensajeArrayUpdate = {'estado': 'Respondido'}
+      
+        const dataActualizar = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(mensajeArrayUpdate),
+            };        
+
 
         
-        const mensajeArrayNew = {'username': userMensaje, 
-                                    'vendor': vendorMensaje, 
-                                    'propiedad': propiedadMensaje, 
+        const mensajeArrayConst = {'username': mensajeContestar.destino, 
+                                    'destino': mensajeContestar.username, 
+                                    'propiedad': mensajeOriginalID,
                                     'mensaje': textoMensaje, 
-                                    'date': dateMensaje,
+                                    'mensajeOriginal': mensajeContestar.mensaje,
+                                    'date': Date.now(),
                                     'estado': 'Pendiente' }
 
-        const data = {
+        const dataResponder = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(mensajeArrayNew),
-        };
+            body: JSON.stringify(mensajeArrayConst),
+        }
 
 
-        if (textoMensaje !== undefined && textoMensaje.length > 5) {
-            const mensajeCrear = await mensajeCreate(data)
+        if (textoMensaje !== undefined && textoMensaje.length > 5 && mensajeContestar.estado != 'Respondido') {
+            const mensajeCrear = await mensajeCreate(dataResponder)
+            const mensajeEstadoCambiar = await mensajeUpdate(mensajeOriginalID, dataActualizar)
             setMensajeEnviado('Su mensaje se ha enviado de forma correcta')
+            setRecarga(true)
 
             setTimeout(() => {
                 setData(null)
                 setMensajeEnviado('')
+                setRecarga(true)
             }, 5000);
             
+        } else if (mensajeContestar.estado == 'Respondido') {
+            setMensajeRechazado('Ya has respondido a este mensaje')
         } else {
             setMensajeRechazado('Su mensaje no ha podido ser entregado, recargue la pagina y vuelva a intentarlo')
         }
     }
 
 
-    
 
 
     async function cerrar() {
         setData(null)
         setMensajeRechazado('')
+        setRecarga(true)
     }
 
+    
 
+    setInterval(() => {
+        setRecarga(true)
+    }, 5000);
 
 
 
