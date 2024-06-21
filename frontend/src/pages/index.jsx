@@ -177,7 +177,7 @@ function Index() {
                                     'propiedad': propiedadMensaje, 
                                     'mensaje': textoMensaje, 
                                     'date': dateMensaje,
-                                    'estado': 'Enviado' }
+                                    'estado': 'Pendiente' }
 
         const data = {
             method: 'POST',

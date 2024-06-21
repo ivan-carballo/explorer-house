@@ -29,6 +29,10 @@ const userSchema  = new mongoose.Schema({
 
     estado : {
         type: String
+    },
+
+    mensajeOriginal : {
+        type: String
     }
 
 
