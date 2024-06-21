@@ -1,0 +1,32 @@
+#mensajes-cuerpo{
+    margin-top: 130px;
+
+    & h1 {
+        text-align: center;
+    }
+
+    & > #div-mensajes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        & > #div-mensaje-cuadro {
+            display: flex;
+            flex-direction: column;
+            border-radius: 25px;
+            background-color: aquamarine;
+            border: 2px solid blue;
+            width: fit-content;
+            padding: 5px 30px 5px 0;
+            margin: 15px;
+
+            & li {
+                margin: 3px 0;
+            }
+
+            & > #div-mensaje-cuadro-buttons {
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+    }
+}
