@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mensajeCreate, getmensaje } from "../api/apiMensaje.js"
+import { mensajeCreate, getmensaje, mensajeUpdate } from "../api/apiMensaje.js"
 
 import { Navbar } from "../componentes/navbar.jsx";
 import Cookies from 'js-cookie';
@@ -25,7 +25,7 @@ function Mensajes() {
                 let mensajesFiltrados = getMensajes.filter((data) => sha256(data.vendor) == Cookies.get('username'))
                 
                 const mensajesDiv = await mensajesFiltrados.map((data) => 
-                    <div id='div-mensaje-cuadro'>
+                    <div key={data._id} id='div-mensaje-cuadro'>
                         <ul>
                             <li>Fecha: {data.date}</li>
                             <li>Usuario: {data.username}</li>
@@ -34,8 +34,8 @@ function Mensajes() {
                             <li>Mensaje: {data.mensaje}</li>
                         </ul>
                         <div id='div-mensaje-cuadro-buttons'>
-                            <input type="button" value="Visto" />
-                            <input type="button" value="Contestar" />
+                            <input id={data._id} estado={data.estado} type="button" value="Visto" onClick={mensajeVisto}/>
+                            <input type="button" value="Contestar" onClick={mensajeContestar}/>
                         </div>
                     </div>
                 
@@ -46,6 +46,34 @@ function Mensajes() {
             }
         }
     }, [recarga]); 
+
+
+    async function mensajeVisto(e) {
+        const buttonID = e.target.id
+        const buttonEstado = e.target.attributes.estado.value
+
+        const mensajeArrayUpdate = {'estado': 'Visto'}
+
+        const data = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(mensajeArrayUpdate),
+            };
+
+            if (buttonEstado === 'Enviado') {
+                const mensajeEstadoCambiar = await mensajeUpdate(buttonID, data)
+                setRecarga('true')
+            }
+    }
+
+
+    async function mensajeContestar() {
+        console.log('asdsa')
+    }
+
+
 
 
 

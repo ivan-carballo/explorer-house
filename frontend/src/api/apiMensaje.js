@@ -23,7 +23,7 @@ async function mensajeCreate(data) {
         }).then(update => {
         //console.log(update);
         }).catch(e => {
-        console.log(e);
+        //console.log(e);
         });
   }
 
