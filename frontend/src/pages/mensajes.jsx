@@ -6,6 +6,7 @@ import { Navbar } from "../componentes/navbar.jsx";
 import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256';
 import { FormatearFecha } from "../funciones/fecha.js"
+import { activeLogin } from "../funciones/activeLogin.js"
 
 import "../scss/mensaje.scss"
 
@@ -16,6 +17,8 @@ function Mensajes() {
     const [data, setData] = useState('')
     const [mensajeEnviado, setMensajeEnviado] = useState('')
     const [mensajeRechazado, setMensajeRechazado] = useState('')
+
+    activeLogin()
 
 
     useEffect(() => {

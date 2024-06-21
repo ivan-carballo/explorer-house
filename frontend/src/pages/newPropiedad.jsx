@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from 'react';
 import { sha256 } from 'js-sha256'
 import Cookies from 'js-cookie'
+import { activeLogin } from "../funciones/activeLogin.js"
 
 
 import { Navbar } from "../componentes/navbar.jsx";
@@ -21,6 +22,7 @@ function NewPropiedad() {
     const [nuevaPropiedad, setNuevaPropiedad] = useState('')
     const [verificada, setVerificada] = useState('')
 
+    activeLogin()
 
 
     useEffect(() => {
