@@ -239,7 +239,7 @@ function NewPropiedad() {
                             <input type="number" id='form-metros' min='0' placeholder='Metros' />
                             <input type="number" id='form-altura' min='0' placeholder='Altura' />
                             <input type="number" id='form-precio' min='0' placeholder='Precio' />
-                            <input type="file" id='form-imagen src-file1'  class="file-select" />
+                            <input type="file" id='form-imagen'  className="file-select src-file1" />
                             <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
                         </form>
                     </div>
