@@ -161,9 +161,11 @@ function Index() {
         let userFiltrar = await userList.filter((dato) => sha256(dato.username) == user)
         userFiltrar = await userFiltrar[0].username
 
+        console.log(e.target.attributes[3].value)
+
         const userMensaje = userFiltrar
         const textoMensaje = e.target.offsetParent.children[0].childNodes[3].lastChild.value
-        const propiedadMensaje = e.target.id
+        const propiedadMensaje = e.target.attributes[3].value
         const dateMensaje = Date.now()
         const vendorMensaje = e.target.attributes[2].value
 
@@ -225,7 +227,7 @@ function Index() {
                     </div>
                     <div id='modal-buttons'>
                         <button className='buttonModal' onClick={cerrar}>Cerrar</button>
-                        <button className='buttonModal' onClick={enviar} id={data[0]} vendor={data[9]}>Enviar</button>
+                        <button className='buttonModal' onClick={enviar} id={data[0]} vendor={data[9]} propiedad={`${data[1]} en ${data[2]}`}>Enviar</button>
                     </div>
                 </div>
 

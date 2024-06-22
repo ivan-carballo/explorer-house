@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { mensajeCreate, getmensaje, getmensajeByID, mensajeUpdate } from "../api/apiMensaje.js"
+import { getPropiedad } from "../api/apiPropiedad.js"
 import { Modal } from "../modal.jsx";
 
 import { Navbar } from "../componentes/navbar.jsx";
@@ -17,7 +18,6 @@ function Mensajes() {
     const [data, setData] = useState('')
     const [mensajeEnviado, setMensajeEnviado] = useState('')
     const [mensajeRechazado, setMensajeRechazado] = useState('')
-    const [estadoMensaje, setEstadoMensaje] = useState('')
 
     activeLogin()
 
@@ -27,8 +27,11 @@ function Mensajes() {
         async function buscarMensajes() {
             if (recarga) {
                 let getMensajes = await getmensaje()
-                getMensajes = getMensajes.data 
+                getMensajes = await getMensajes.data 
                 getMensajes.reverse()
+
+                let getPropiedades = await getPropiedad()
+                getPropiedades = await getPropiedades.data
 
                 let mensajesFiltrados = getMensajes.filter((data) => sha256(data.destino) == Cookies.get('username'))
                 
@@ -107,7 +110,7 @@ function Mensajes() {
         
         const mensajeArrayConst = {'username': mensajeContestar.destino, 
                                     'destino': mensajeContestar.username, 
-                                    'propiedad': mensajeOriginalID,
+                                    'propiedad': mensajeContestar.propiedad,
                                     'mensaje': textoMensaje, 
                                     'mensajeOriginal': mensajeContestar.mensaje,
                                     'date': Date.now(),
