@@ -17,6 +17,7 @@ function Mensajes() {
     const [data, setData] = useState('')
     const [mensajeEnviado, setMensajeEnviado] = useState('')
     const [mensajeRechazado, setMensajeRechazado] = useState('')
+    const [estadoMensaje, setEstadoMensaje] = useState('')
 
     activeLogin()
 
@@ -32,7 +33,7 @@ function Mensajes() {
                 let mensajesFiltrados = getMensajes.filter((data) => sha256(data.destino) == Cookies.get('username'))
                 
                 const mensajesDiv = await mensajesFiltrados.map((data) => 
-                    <div key={data._id} id='div-mensaje-cuadro'>
+                    <div key={data._id} id={data.estado == 'Pendiente' ? 'div-mensaje-cuadro-pendiente' : 'div-mensaje-cuadro-visto'}>
                         <ul>
                             <li>Fecha: {data.date}</li>
                             <li>Usuario: {data.username}</li>
@@ -42,8 +43,8 @@ function Mensajes() {
                             <li>Mensaje: {data.mensaje}</li>
                         </ul>
                         <div id='div-mensaje-cuadro-buttons'>
-                            <input id={data._id} estado={data.estado} type="button" value="Visto" onClick={mensajeVisto}/>
-                            <input id={data._id} type="button" value="Contestar" onClick={async ()=>{setData(data)}}/>
+                            <input id={data._id} estado={data.estado} type="button" value="Visto" className="buttons-mensaje" onClick={mensajeVisto}/>
+                            <input id={data._id} type="button" value="Contestar" className="buttons-mensaje" onClick={async ()=>{setData(data)}}/>
                         </div>
                     </div>
                 

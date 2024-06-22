@@ -8,25 +8,45 @@
     & > #div-mensajes {
         display: grid;
         grid-template-columns: 1fr 1fr;
-
-        & > #div-mensaje-cuadro {
-            display: flex;
-            flex-direction: column;
-            border-radius: 25px;
-            background-color: aquamarine;
-            border: 2px solid blue;
-            width: fit-content;
-            padding: 5px 30px 5px 0;
-            margin: 15px;
-
-            & li {
-                margin: 3px 0;
-            }
-
-            & > #div-mensaje-cuadro-buttons {
-                display: flex;
-                justify-content: space-evenly;
-            }
-        }
     }
+}
+
+#div-mensaje-cuadro-pendiente {
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: yellow;
+    border: 2px solid blue;
+    padding: 5px 30px 5px 0;
+    margin: 15px;
+}
+
+#div-mensaje-cuadro-visto {
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: aquamarine;
+    border: 2px solid blue;
+    padding: 5px 30px 5px 0;
+    margin: 15px;
+}
+
+li {
+    margin: 3px 0;
+}
+
+#div-mensaje-cuadro-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons-mensaje {
+    font-size: 1.25rem;
+    border: 0;
+    border-radius: 25px;
+    padding: 3px 20px;
+    margin-bottom: 15px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
 }
