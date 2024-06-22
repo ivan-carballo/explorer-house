@@ -221,7 +221,7 @@ function Index() {
                     <h1 id='modal-rechazado'>{mensajeRechazado}</h1>
                     <h1 id='modal-rotulo'>Enviar mensaje a {data[9]} sobre {data[1]} en {data[2]}</h1>
                     <div id='modal-form'>
-                        <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='25' cols='150' />
+                        <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='20' cols='130' />
                     </div>
                     <div id='modal-buttons'>
                         <button className='buttonModal' onClick={cerrar}>Cerrar</button>

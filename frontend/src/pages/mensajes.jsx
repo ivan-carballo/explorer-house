@@ -177,7 +177,7 @@ function Mensajes() {
                         <h1 id='modal-rechazado'>{mensajeRechazado}</h1>
                         <h1 id='modal-rotulo'>Contestar a {data.username}</h1>
                         <div id='modal-form'>
-                            <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='25' cols='150' />
+                            <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='20' cols='130' />
                         </div>
                         <div id='modal-buttons'>
                             <button className='buttonModal' onClick={cerrar}>Cerrar</button>
