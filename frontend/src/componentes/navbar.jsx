@@ -65,8 +65,11 @@ const Navbar = () => {
         getUsuarios = getUsuarios.data
 
         let usuarioFiltrado = getUsuarios.filter((dato) => sha256(dato.username) == Cookies.get('username'))
-        usuarioFiltrado = usuarioFiltrado[0].username
-        setUser(usuarioFiltrado)
+
+        if (usuarioFiltrado.length > 0) {
+            usuarioFiltrado = usuarioFiltrado[0].username
+            setUser(usuarioFiltrado)
+        }
 
     }
 
@@ -77,7 +80,7 @@ const Navbar = () => {
                 let getMensajes = await getmensaje()
                 getMensajes = getMensajes.data
 
-                let mensajesFiltrados = getMensajes.filter((data) => sha256(data.vendor) == Cookies.get('username') && data.estado == 'Enviado')
+                let mensajesFiltrados = getMensajes.filter((data) => sha256(data.destino) == Cookies.get('username') && data.estado == 'Pendiente')
                 
                 if (mensajesFiltrados.length > 0) {
                     setAvisoMensaje('nav-aviso') 
@@ -96,7 +99,7 @@ const Navbar = () => {
 
     setInterval(() => {
         setRecarga(true)
-    }, 30000);
+    }, 10000);
 
 
 

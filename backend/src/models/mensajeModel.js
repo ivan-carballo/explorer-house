@@ -7,7 +7,7 @@ const userSchema  = new mongoose.Schema({
         required: true
     },
 
-    vendor : {
+    destino : {
         type: String,
         required: true
     },
@@ -28,6 +28,10 @@ const userSchema  = new mongoose.Schema({
     },
 
     estado : {
+        type: String
+    },
+
+    mensajeOriginal : {
         type: String
     }
 

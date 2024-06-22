@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { Navbar } from "../componentes/navbar.jsx";
 import { getPropiedad } from "../api/apiPropiedad";
 import { getCita } from "../api/apiCita.js";
+import { activeLogin } from "../funciones/activeLogin.js"
 
 import "../scss/propiedad.scss"
 
@@ -14,6 +15,7 @@ function Propiedad() {
     const [listado, setListado] = useState('')
     const username = Cookies.get('username')
 
+    activeLogin()
 
 
     useEffect(() => {

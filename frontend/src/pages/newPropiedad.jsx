@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from 'react';
 import { sha256 } from 'js-sha256'
 import Cookies from 'js-cookie'
+import { activeLogin } from "../funciones/activeLogin.js"
 
 
 import { Navbar } from "../componentes/navbar.jsx";
@@ -21,6 +22,7 @@ function NewPropiedad() {
     const [nuevaPropiedad, setNuevaPropiedad] = useState('')
     const [verificada, setVerificada] = useState('')
 
+    activeLogin()
 
 
     useEffect(() => {
@@ -237,7 +239,7 @@ function NewPropiedad() {
                             <input type="number" id='form-metros' min='0' placeholder='Metros' />
                             <input type="number" id='form-altura' min='0' placeholder='Altura' />
                             <input type="number" id='form-precio' min='0' placeholder='Precio' />
-                            <input type="file" id='form-imagen src-file1'  class="file-select" />
+                            <input type="file" id='form-imagen'  className="file-select src-file1" />
                             <input id='nuevo-button' type="button" value="Dar de alta" onClick={enviarPropiedad}/>
                         </form>
                     </div>

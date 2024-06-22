@@ -3,6 +3,7 @@ import { getCita, citaDelete } from "../api/apiCita.js";
 import { getPropiedad } from '../api/apiPropiedad.js'
 import { Navbar } from "../componentes/navbar.jsx";
 import { useState, useEffect } from "react";
+import { activeLogin } from "../funciones/activeLogin.js"
 
 import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256';
@@ -14,7 +15,7 @@ function UserPanel() {
     const [estadoBoton, setEstadoBoton] = useState(true);
     const [noDelete, setNoDelete] = useState('')
 
-
+    activeLogin()
 
     useEffect(() => {
         if (estadoBoton) {

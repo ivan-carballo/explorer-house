@@ -108,16 +108,12 @@ function Index() {
 
 
     async function newCita(e) {
-        
-
 
         const citaPedida = e.target.attributes.value.value
         const propiedadID = e.target.id
         const vendor = e.target.parentElement.parentNode.childNodes[3].childNodes[4].childNodes[1].data
         const id = Cookies.get('id')
 
-        
-        
         
         let listUser = await userLogin()
         listUser = listUser.data
@@ -165,19 +161,21 @@ function Index() {
         let userFiltrar = await userList.filter((dato) => sha256(dato.username) == user)
         userFiltrar = await userFiltrar[0].username
 
+        console.log(e.target.attributes[3].value)
+
         const userMensaje = userFiltrar
         const textoMensaje = e.target.offsetParent.children[0].childNodes[3].lastChild.value
-        const propiedadMensaje = e.target.id
+        const propiedadMensaje = e.target.attributes[3].value
         const dateMensaje = Date.now()
         const vendorMensaje = e.target.attributes[2].value
 
         
         const mensajeArrayNew = {'username': userMensaje, 
-                                    'vendor': vendorMensaje, 
+                                    'destino': vendorMensaje, 
                                     'propiedad': propiedadMensaje, 
                                     'mensaje': textoMensaje, 
                                     'date': dateMensaje,
-                                    'estado': 'Enviado' }
+                                    'estado': 'Pendiente' }
 
         const data = {
             method: 'POST',
@@ -225,11 +223,11 @@ function Index() {
                     <h1 id='modal-rechazado'>{mensajeRechazado}</h1>
                     <h1 id='modal-rotulo'>Enviar mensaje a {data[9]} sobre {data[1]} en {data[2]}</h1>
                     <div id='modal-form'>
-                        <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='25' cols='150' />
+                        <textarea id="modal-mensaje" placeholder="Escriba su mensaje" rows='20' cols='130' />
                     </div>
                     <div id='modal-buttons'>
                         <button className='buttonModal' onClick={cerrar}>Cerrar</button>
-                        <button className='buttonModal' onClick={enviar} id={data[0]} vendor={data[9]}>Enviar</button>
+                        <button className='buttonModal' onClick={enviar} id={data[0]} vendor={data[9]} propiedad={`${data[1]} en ${data[2]}`}>Enviar</button>
                     </div>
                 </div>
 
