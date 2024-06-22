@@ -10,7 +10,7 @@ const DB_USER = process.env.DB_USER || "user";
 const DB_PASSWORD = process.env.DB_PASSWORD || "123";
 
 const DB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
-
+console.log("dbURI ",DB_URI)
 const connectDB = async ()=>{
     try {
         await mongoose.connect(DB_URI);
