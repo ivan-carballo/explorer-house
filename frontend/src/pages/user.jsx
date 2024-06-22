@@ -90,8 +90,11 @@ function UserPanel() {
                 setNoDelete('')
             }, 7500);
         }
-
     }
+
+    setInterval(() => {
+        setEstadoBoton(true)
+    }, 5000);
 
 
 
